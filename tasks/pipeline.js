@@ -8,14 +8,19 @@
  * for matching multiple files.)
  */
 
-
-
 // CSS files to inject in order
 //
 // (if you're using LESS with the built-in default config, you'll want
 //  to change `assets/styles/importer.less` instead.)
 var cssFilesToInject = [
-  'styles/**/*.css'
+
+    // Load bootstrap first
+    'styles/dependencies/bootstrap.2-3-0.css',
+    'styles/dependencies/bootstrap-theme.2-3-0.css',
+
+    'styles/dependencies/*.css',
+
+    'styles/**/*.css'
 ];
 
 
@@ -23,15 +28,21 @@ var cssFilesToInject = [
 // (uses Grunt-style wildcard/glob/splat expressions)
 var jsFilesToInject = [
   
-  // Load sails.io before everything else
-  'js/dependencies/sails.io.js',
+    // Load sails.io before everything else
+    'js/dependencies/sails.io.js',
 
-  // Dependencies like jQuery, or Angular are brought in here
-  'js/dependencies/**/*.js',
+    // Jquery
+    'js/dependencies/jquery.1-11-1.js',
 
-  // All of the rest of your client-side js files
-  // will be injected here in no particular order.
-  'js/**/*.js'
+    // Load bootstrap then
+    'js/dependencies/bootstrap.2-3-0.js',
+
+    // Dependencies
+    'js/dependencies/**/*.js',
+
+    // All of the rest of your client-side js files
+    // will be injected here in no particular order.
+    'js/**/*.js'
 ];
 
 
@@ -49,6 +60,14 @@ var templateFilesToInject = [
 ];
 
 
+var fontFilesToInject = [
+    // Dependencies
+    'fonts/dependencies/**/*.*',
+
+    // All of the rest of your client-side font files
+    // will be injected here in no particular order.
+    'fonts/**/*.*'
+]
 
 // Prefix relative paths to source files so they point to the proper locations
 // (i.e. where the other Grunt tasks spit them out, or in some cases, where
@@ -62,3 +81,4 @@ module.exports.jsFilesToInject = jsFilesToInject.map(function(path) {
 module.exports.templateFilesToInject = templateFilesToInject.map(function(path) {
   return 'assets/' + path;
 });
+
