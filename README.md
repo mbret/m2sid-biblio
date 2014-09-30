@@ -1,4 +1,3 @@
-m2sid-biblio
-============
+# m2sid-biblio
 
-biblio
+a [Sails](http://sailsjs.org) application
