@@ -32,23 +32,36 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
-  },
+    'get /dev/dump': function (req, res) {
+        req.session.hasVisitedDev = true;
+        console.log(req);
+        var users = {};
+        return res.json(200, {
+            session: req.session,
+            sessionID: req.sessionID,
+            sessionStore: req.sessionStore,
+            cookies: req.cookies,
+            signedCookies: req.signedCookies,
+        });
+    },
 
-    'get /index': {
-        controller: 'indexController',
-        action: 'index'
-    }
 
-  /***************************************************************************
-  *                                                                          *
-  * Custom routes here...                                                    *
-  *                                                                          *
-  *  If a request to a URL doesn't match any of the custom routes above, it  *
-  * is matched against Sails route blueprints. See `config/blueprints.js`    *
-  * for configuration options and examples.                                  *
-  *                                                                          *
-  ***************************************************************************/
+    /*
+     * BASIC ROUTES
+     */
+    'get /': 'indexController.index',
+    'get /index': 'indexController.index',
+    'get /login': 'IndexController.login',
+    'get /logout': 'IndexController.logout',
+
+    /*
+     * BASIC API
+     */
+    'post /api/login': 'api/AuthController.login',
+
+    /*
+     * REST API
+     */
+
 
 };

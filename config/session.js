@@ -21,9 +21,9 @@ module.exports.session = {
   * of your users, forcing them to log in again.                             *
   *                                                                          *
   ***************************************************************************/
-  secret: 'cd3fe8161206698bc1d4c728595b8af1',
+    secret: 'abcfe8161206698bc1d4c728595b8af1',
 
-
+    key: 'm2biblio.sid'
   /***************************************************************************
   *                                                                          *
   * Set the session cookie expire time The maxAge is set by milliseconds,    *

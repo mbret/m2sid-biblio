@@ -24,6 +24,8 @@ module.exports = function notFound (data, options) {
   var res = this.res;
   var sails = req._sails;
 
+    res.locals.layout = false;
+
   // Set status code
   res.status(404);
 
@@ -48,6 +50,9 @@ module.exports = function notFound (data, options) {
   // If second argument is a string, we take that to mean it refers to a view.
   // If it was omitted, use an empty object (`{}`)
   options = (typeof options === 'string') ? { view: options } : options || {};
+
+    // Set no layout
+//    data.layout = false;
 
   // If a view was provided in options, serve it.
   // Otherwise try to guess an appropriate view, or if that doesn't

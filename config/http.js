@@ -21,7 +21,7 @@ module.exports.http = {
   *                                                                           *
   ****************************************************************************/
 
-  // middleware: {
+  middleware: {
 
   /***************************************************************************
   *                                                                          *
@@ -30,23 +30,25 @@ module.exports.http = {
   *                                                                          *
   ***************************************************************************/
 
-    // order: [
-    //   'startRequestTimer',
-    //   'cookieParser',
-    //   'session',
-    //   'myRequestLogger',
-    //   'bodyParser',
-    //   'handleBodyParserError',
-    //   'compress',
-    //   'methodOverride',
-    //   'poweredBy',
-    //   '$custom',
-    //   'router',
-    //   'www',
-    //   'favicon',
-    //   '404',
-    //   '500'
-    // ],
+    order: [
+       'startRequestTimer',
+       'cookieParser',
+       'session',
+//        'devHook',
+       'myRequestLogger',
+       'bodyParser',
+       'handleBodyParserError',
+       'compress',
+       'methodOverride',
+       'poweredBy',
+       '$custom',
+      'devHook',
+       'router',
+       'www',
+       'favicon',
+       '404',
+       '500'
+    ],
 
   /****************************************************************************
   *                                                                           *
@@ -54,10 +56,17 @@ module.exports.http = {
   *                                                                           *
   ****************************************************************************/
 
-    // myRequestLogger: function (req, res, next) {
-    //     console.log("Requested :: ", req.method, req.url);
-    //     return next();
-    // }
+        devHook: function(req, res, next){
+            console.log(req.session);
+            req.session.authenticated = true;
+            req.session.userID = 'user';
+            return next();
+        },
+
+        myRequestLogger: function (req, res, next) {
+             console.log("Requested :: ", req.method, req.url);
+            return next();
+        }
 
 
   /***************************************************************************
@@ -71,7 +80,7 @@ module.exports.http = {
 
     // bodyParser: require('skipper')
 
-  // },
+  },
 
   /***************************************************************************
   *                                                                          *

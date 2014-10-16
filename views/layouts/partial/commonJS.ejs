@@ -1,0 +1,16 @@
+<script>
+    var flashMessages = {
+        info: {
+            title: 'Information',
+            message: '<%- req.flash('info') %>'
+        },
+        success: {
+            title: 'Success',
+            message: '<%- req.flash('success') %>'
+        },
+        error: {
+            title: 'Error',
+            message: '<%- req.flash('error') %>'
+        }
+    }
+</script>
