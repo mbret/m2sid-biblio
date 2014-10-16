@@ -22,11 +22,13 @@ module.exports.policies = {
     '*': false,
 
     IndexController: {
-        '*': ['isLoggedInOrRedirect'],
-        login: ['isNotLoggedInOrRedirect']
+        '*': ['isLoggedIn'],
+        login: ['isNotLoggedIn'],
+        loginService: true
     },
 
-    'api/AuthController': {
-        login: true
+    'api/CustomerController': {
+        '*': ['isLoggedIn']
     }
+
 };

@@ -41,7 +41,7 @@ module.exports.routes = {
             sessionID: req.sessionID,
             sessionStore: req.sessionStore,
             cookies: req.cookies,
-            signedCookies: req.signedCookies,
+            signedCookies: req.signedCookies
         });
     },
 
@@ -53,15 +53,23 @@ module.exports.routes = {
     'get /index': 'indexController.index',
     'get /login': 'IndexController.login',
     'get /logout': 'IndexController.logout',
+    'get /customers': 'IndexController.customers',
+
 
     /*
-     * BASIC API
+     * HELPER API
+     * - used by application as service but does not follow any rest pattern
      */
-    'post /api/login': 'api/AuthController.login',
+    'post /api/login': 'IndexController.loginService',
+    'post /api/flash': 'IndexController.flashService',
 
     /*
      * REST API
+     * - used by application as RESTFUL service (no persistence)
      */
-
+    'get /api/customers': 'api/CustomerController.findMultiple',
+    'post /api/customers': 'api/CustomerController.create',
+    'delete /api/customers/:id': 'api/CustomerController.delete',
+    'put /api/customers': 'api/CustomerController.update'
 
 };

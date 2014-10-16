@@ -12,7 +12,7 @@
 module.exports.bootstrap = function(cb) {
 
 
-    User.create({login: 'user', password: 'user'}, function(err){
+    User.create({login: 'librarian1', password: 'password'}, function(err){
         if(err) throw err;
         sails.log.info('user created');
 

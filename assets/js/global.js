@@ -1,17 +1,26 @@
 var messages = {
     serverError: "Something went wrong, please try later!",
-    badCredential: "Wrong credential!"
+    badCredential: "Wrong credential!",
+    badRequest: "Please verify your form, some information are not valid!",
+    confirm: "Are you sure?"
 }
+
+//var routes = {
+//    customers:
+//}
+var pathArray = window.location.pathname.split( '/' );
+var route = pathArray[1];
+if(route == "") route = "index";
+console.log("route = " + route);
 
 function redirect( path ){
-    window.location.href = "http://localhost:1337/" . path;
+    window.location.href = "http://localhost:1337/" + path;
 }
 
 
+(function ($) {
 
-$(function() {
-
-    /**
+    /*
      * Handle flash message for each request
      */
     for (var key in flashMessages) {
@@ -25,18 +34,27 @@ $(function() {
         }
     }
 
+    /*
+     * Set left panel active depend of the route
+     */
+    $( "ul.nav-sidebar li" ).each(function( index ) {
+        if( $(this).data("route") == route){
+            $( this ).addClass( "active" );
+        }
+    });
+
 
     /**
      * Sign In form
      */
     $("#signin").on('submit', function( event ){
         event.preventDefault();
-        var button = $("#signin button[type='submit']");
+        var button = $(this).find("button[type='submit']");
         button.button('loading');
         $.ajax({
             type: "POST",
             url: "/api/login",
-            data: $('#signin').serialize()
+            data: $(this).serialize()
         })
         .done(function( response ) {
             console.log(response);
@@ -55,5 +73,28 @@ $(function() {
             button.button('reset');
         });
     });
-});
+
+}(jQuery));
+
+/**
+ * Add method to jquery functions
+ * This method allow to retrieve data form a form but in object instead of string (serialize) or array (serializeArray)
+ * @returns {{}}
+ */
+$.fn.serializeObject = function()
+{
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
 

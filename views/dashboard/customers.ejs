@@ -1,0 +1,67 @@
+
+<h1 class="page-header">Dashboard: Customers</h1>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-8">
+
+            <h2 class="sub-header">Manage customers</h2>
+            <table class="table table-striped" id="customersTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody><!-- Content are loaded dynamically --></tbody>
+            </table>
+
+        </div>
+
+        <div class="col-md-4">
+            <h2 class="sub-header">Add a customer</h2>
+
+            <form role="form" id="addCustomer">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Name</label>
+                    <input type="text" class="form-control" required="true" name="name" placeholder="Enter name">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Edit customer modal -->
+<div class="modal fade" id="editCustomerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <form role="form" id="editCustomer" data-id="">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Edit customer</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Name</label>
+                        <input type="hidden" name="id">
+                        <input type="text" class="form-control" required="true" name="name" placeholder="Enter name">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

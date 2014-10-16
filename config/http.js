@@ -57,14 +57,13 @@ module.exports.http = {
   ****************************************************************************/
 
         devHook: function(req, res, next){
-            console.log(req.session);
             req.session.authenticated = true;
-            req.session.userID = 'user';
+            req.session.userID = 'librarian1';
             return next();
         },
 
         myRequestLogger: function (req, res, next) {
-             console.log("Requested :: ", req.method, req.url);
+            console.log("Requested :: ", req.method, req.url);
             return next();
         }
 

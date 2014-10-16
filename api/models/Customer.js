@@ -9,6 +9,27 @@ module.exports = {
 
   attributes: {
 
+      /*
+       * BDD fields
+       */
+      ID: {
+          type: 'integer',
+          autoIncrement: true,
+          unique: true,
+          index: true,
+          primaryKey: true,
+          columnName: 'customerID'
+      },
+      name: {
+          type: 'string',
+          required: true,
+          unique: true,
+          columnName: "customerName"
+      }
+
+      /*
+       * Other fields
+       */
   }
 };
 
