@@ -54,7 +54,7 @@ module.exports.routes = {
     'get /login': 'IndexController.login',
     'get /logout': 'IndexController.logout',
     'get /customers': 'IndexController.customers',
-
+    'get /literaryworks': 'IndexController.literaryworks',
 
     /*
      * HELPER API
@@ -70,6 +70,10 @@ module.exports.routes = {
     'get /api/customers': 'api/CustomerController.findMultiple',
     'post /api/customers': 'api/CustomerController.create',
     'delete /api/customers/:id': 'api/CustomerController.delete',
-    'put /api/customers': 'api/CustomerController.update'
+    'put /api/customers': 'api/CustomerController.update',
 
+    'get /api/literaryworks': 'api/LiteraryWorkController.findMultiple',
+    'post /api/literaryworks': 'api/LiteraryWorkController.create',
+    'delete /api/literaryworks/:id': 'api/LiteraryWorkController.delete',
+    'put /api/literaryworks': 'api/LiteraryWorkController.update'
 };

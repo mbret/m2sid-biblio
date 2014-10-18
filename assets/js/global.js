@@ -17,6 +17,12 @@ function redirect( path ){
     window.location.href = "http://localhost:1337/" + path;
 }
 
+function getObjectByID( id, arrayOfObjects ){
+    for(var i = 0; i < arrayOfObjects.length; i++){
+        if(arrayOfObjects[i].ID == id) return arrayOfObjects[i];
+    }
+    return null;
+}
 
 (function ($) {
 

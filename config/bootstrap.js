@@ -11,13 +11,15 @@
 
 module.exports.bootstrap = function(cb) {
 
-
-    User.create({login: 'librarian1', password: 'password'}, function(err){
-        if(err) throw err;
-        sails.log.info('user created');
-
-
-        return cb();
-    })
+    User.create({login: 'maxime', password: 'password'})
+        .then(function () {
+           return User.create({login: 'maxime', password: 'password'});
+        })
+        .then(function(){
+            return cb();
+        })
+        .catch(function (err) {
+            throw new Error(err)
+        });
 
 };

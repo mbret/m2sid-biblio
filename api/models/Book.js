@@ -5,10 +5,12 @@
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
-module.exports = {
+module.exports = _.merge( _.cloneDeep( require('./LiteraryWorkBaseModel') ), {
 
-  attributes: {
+    attributes: {
 
-  }
-};
+    }
+
+
+});
 

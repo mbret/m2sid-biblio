@@ -29,6 +29,10 @@ module.exports.policies = {
 
     'api/CustomerController': {
         '*': ['isLoggedIn']
+    },
+
+    'api/LiteraryWorkController': {
+        '*': ['isLoggedIn']
     }
 
 };

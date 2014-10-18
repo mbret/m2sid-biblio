@@ -1,5 +1,5 @@
 
-var customers = {};
+var works = {};
 
 
 $(function() {
@@ -7,46 +7,46 @@ $(function() {
     /*
      * Load and display customer table
      */
-    if ( $('#customersTable').length ) {
-        console.log("Customer table loading");
-        $.ajax({
-            type: "get",
-            url: "/api/customers",
-            data: null
-        })
-        .done(function( response ) {
-            console.log(response);
-            customers = response.customers;
-            var html = '';
-            for(var i = 0; i < customers.length; i++){
-                html +=
-                    '<tr id="customer-' + customers[i].ID + ' "><td>' + customers[i].ID +
-                    '</td><td>' + customers[i].name + '</td>' +
-                    '<td><span class="btn-icon glyphicon glyphicon-trash btn-remove-customer" data-id="' + customers[i].ID +'"></span>' +
-                    '<span class="btn-icon glyphicon glyphicon-edit btn-edit-customer" data-id="' + customers[i].ID +'" data-toggle="modal" data-target="#editCustomerModal"></span></td></tr>';
-            }
-            $('#customersTable tbody').first().after(html);
-        })
-        .fail(function( error ){
-            console.log(error);
-            alert(messages.serverError);
-        })
-        .always(function() {});
-    }
-
+    console.log("Works table loading");
+    $.ajax({
+        type: "get",
+        url: "/api/literaryworks",
+        data: null
+    })
+    .done(function( response ) {
+        console.log(response);
+        works = response.works;
+        var html = '';
+        for(var i = 0; i < works.length; i++){
+            html +=
+                '<tr><td>' + works[i].ID + '</td>' +
+                '<td>' + works[i].title + '</td>' +
+                '<td>' + ((works[i].workType == 'book')? '<span class="glyphicon glyphicon-book" title="book"></span>' : '<span class="glyphicon glyphicon-list-alt" title="magazine"></span>') + '</td>' +
+                '<td>' + works[i].publishedDate + '</td>' +
+                '<td>' + ((!works[i].volume) ? '-' : works[i].volume) + '</td>' +
+                '<td>' + ((!works[i].number) ? '-' : works[i].number) + '</td>' +
+                '<td><span class="btn-icon glyphicon glyphicon-trash btn-remove-work" data-id="' + works[i].ID +'"></span>' +
+                '<span class="btn-icon glyphicon glyphicon-edit btn-edit-work" data-id="' + works[i].ID +'" data-toggle="modal" data-target="#editWorkModal"></span></td></tr>';
+        }
+        $('#worksTable tbody').first().after(html);
+    })
+    .fail(function( error ){
+        console.log(error);
+        alert(messages.serverError);
+    })
+    .always(function() {});
 
 
     /**
-     * Add customer form
+     * Add work form
      */
-    $("#addCustomer").on('submit', function( event ){
+    $("#addWork").on('submit', function( event ){
         event.preventDefault();
-        console.log('sd');
         var button = $(this).find("button[type='submit']");
         button.button('loading');
         $.ajax({
             type: "post",
-            url: "/api/customers",
+            url: "/api/literaryworks",
             data: $(this).serialize()
         })
         .done(function( response ) {
@@ -54,10 +54,10 @@ $(function() {
             $.ajax({
                 type: "POST",
                 url: "/api/flash",
-                data: { type: "success", message: "Customer created" }
+                data: { type: "success", message: "Work created" }
             })
             .always(function() {
-                redirect( 'customers' );
+                redirect( 'literaryworks' );
             });
         })
         .fail(function( error ) {
@@ -73,16 +73,23 @@ $(function() {
             button.button('reset');
         });
     });
+    /**
+     * Display extra form whether is book or magazine chosen
+     */
+    $('#addWork input[name="type"]').on('click', function( event ){
+        $('.extra-form:visible').addClass('hide').find('input').prop('disabled', true);
+        $('.extra-form-' + $(this).val()).removeClass('hide').find('input').prop('disabled', false);
+    });
 
     /**
      * Remove customer
      * - delegate event
      */
-    $(document).on('click', '.btn-remove-customer', function( event ){
+    $(document).on('click', '.btn-remove-work', function( event ){
         if(confirm(messages.confirm)) {
             $.ajax({
                 type: "delete",
-                url: "/api/customers/" + $(this).data("id"),
+                url: "/api/literaryworks/" + $(this).data("id"),
                 data: null
             })
             .done(function (response) {
@@ -90,10 +97,10 @@ $(function() {
                 $.ajax({
                     type: "post",
                     url: "/api/flash",
-                    data: { type: "success", message: "Customer deleted" }
+                    data: { type: "success", message: "Work deleted" }
                 })
                 .always(function () {
-                    redirect('customers');
+                    redirect('literaryworks');
                 });
             })
             .fail(function (error) {
@@ -155,7 +162,7 @@ $(function() {
      */
     $('#editCustomerModal').on('show.bs.modal', function ( event ) {
         var id = $(event.relatedTarget).data('id');
-        var customer = getObjectByID( id, customers );
+        var customer = getCustomerByID( id, customers );
         console.log(customer);
         $(this).find('input[name="name"]').val( customer.name );
         $(this).find('input[name="name"]').data( 'oldValue', customer.name );

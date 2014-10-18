@@ -23,16 +23,27 @@ module.exports = {
         req.session.userID = false;
         req.flash('success', 'You have been logged out!');
         res.redirect('/');
-
     },
 
     customers: function(req, res){
-        Customer.find().exec(function callback(err, customers){
-            if(err) return res.serverError(err);
+//        Customer.find().exec(function callback(err, customers){
+//            if(err) return res.serverError(err);
             return res.view('dashboard/customers', {
-                customers: customers
+//                customers: customers
             })
-        });
+//        });
+    },
+
+    /**
+     *
+     * @param req
+     * @param res
+     * @returns {*}
+     */
+    literaryworks: function(req, res){
+        return res.view('dashboard/literaryworks', {
+            works: null
+        })
     },
 
     /**********************************************

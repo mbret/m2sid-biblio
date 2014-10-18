@@ -33,6 +33,7 @@ var jsFilesToInject = [
 
     // Jquery
     'js/dependencies/jquery.1-11-1.js',
+    'js/dependencies/jquery-ui.1-11-2.js',
 
     // Load bootstrap then
     'js/dependencies/bootstrap.2-3-0.js',
