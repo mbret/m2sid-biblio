@@ -57,11 +57,11 @@ module.exports = {
             if(!work) return res.notFound();
 
             // We destroy
-            return work.destroy({ID:req.param('id')}).then(function(){
-                return res.ok();
-            });
+            return LiteraryWorkBaseModel.destroy({ID:req.param('id')});
 
-        }).fail(function(err){
+        }).then(function(){
+            return res.ok();
+        }).catch(function(err){
             return res.serverError(err);
         });
 
@@ -75,7 +75,11 @@ module.exports = {
 
         // user data
         var data = {};
-        if ( req.param('title') ) data.title = req.param('title');
+        if( req.param('title') ) data.title = req.param('title');
+        if( req.param('publishedDate') ) data.publishedDate = req.param('publishedDate');
+        if( req.param('type') ) data.workType = req.param('type');
+        if( req.param('volume') ) data.volume = req.param('volume');
+        if( req.param('number') ) data.number = req.param('number');
 
         // Query to update
         var query = {
@@ -83,16 +87,16 @@ module.exports = {
         }
 
         // Update process
-        Customer.update(query, data, function(err, customer) {
-
+        LiteraryWorkBaseModel.update(query, data, function(err, works) {
+            console.log(works);
             if (err) {
                 if(err.ValidationError) return res.badRequest( err );
                 else return res.serverError(err);
             }
-            if(!customer || customer.length < 1) return res.notFound();
+            if(!works || works.length < 1) return res.notFound();
 
             return res.ok({
-                customer: customer[0]
+                work: works[0]
             });
         });
 

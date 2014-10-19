@@ -69,7 +69,7 @@ var fontFilesToInject = [
     // All of the rest of your client-side font files
     // will be injected here in no particular order.
     'fonts/**/*.*'
-]
+];
 
 // Prefix relative paths to source files so they point to the proper locations
 // (i.e. where the other Grunt tasks spit them out, or in some cases, where

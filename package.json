@@ -23,7 +23,8 @@
     "grunt-contrib-less": "0.11.1",
     "grunt-contrib-coffee": "~0.10.1",
     "sails-memory": "^0.10.3",
-    "sails-mysql": "^0.10.6"
+    "sails-mysql": "^0.10.6",
+    "bluebird": "^2.3.6"
   },
   "scripts": {
     "start": "node app.js",
