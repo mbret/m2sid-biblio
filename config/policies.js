@@ -22,9 +22,17 @@ module.exports.policies = {
     '*': false,
 
     IndexController: {
-        '*': ['isLoggedIn'], // redirect to login page otherwise
+        flashService: ['isAuth']
+    },
+
+    AuthController: {
+        logout: ['isLoggedIn'], // redirect to login page otherwise
         login: ['isNotLoggedIn'], // redirect to home page otherwise
         loginService: true
+    },
+
+    DashboardController: {
+        '*': ['isLoggedIn'] // redirect to login page otherwise
     },
 
     'api/CustomerController': {

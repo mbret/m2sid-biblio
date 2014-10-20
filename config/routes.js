@@ -49,18 +49,19 @@ module.exports.routes = {
     /*
      * BASIC ROUTES
      */
-    'get /': 'indexController.index',
-    'get /index': 'indexController.index',
-    'get /login': 'IndexController.login',
-    'get /logout': 'IndexController.logout',
-    'get /customers': 'IndexController.customers',
-    'get /literaryworks': 'IndexController.literaryworks',
+    'get /': 'DashboardController.index',
+    'get /index': 'DashboardController.index',
+    'get /login': 'AuthController.login',
+    'get /logout': 'AuthController.logout',
+    'get /customers': 'DashboardController.customers',
+    'get /literaryworks': 'DashboardController.literaryworks',
+    'get /literarycopies': 'DashboardController.literarycopies',
 
     /*
      * HELPER API
      * - used by application as service but does not follow any rest pattern
      */
-    'post /api/login': 'IndexController.loginService',
+    'post /api/login': 'AuthController.loginService',
     'post /api/flash': 'IndexController.flashService',
 
     /*

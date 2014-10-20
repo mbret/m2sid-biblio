@@ -1,0 +1,79 @@
+
+<h1 class="page-header">Dashboard: Literary copies</h1>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-8">
+
+            <h2 class="sub-header">Manage copies</h2>
+            <table class="table table-striped" id="copiesTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ISBN</th>
+                        <th>Type</th>
+                        <th>Reference</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody><!-- Content are loaded dynamically --></tbody>
+            </table>
+
+        </div>
+
+        <div class="col-md-4">
+            <h2 class="sub-header">Add a copy</h2>
+
+            <form role="form" id="addCopy">
+                <div class="form-group">
+                    <label for="">ISBN</label>
+                    <input type="text" class="form-control" required="true" name="isbn" placeholder="Enter ISBN">
+                </div>
+                <div class="form-group">
+                    <label for="">Reference</label>
+                    <select class="form-control" name="reference">
+                        <% _.each( references, function (reference) { %>
+                            <option value="<%= reference.ID %>"><%= reference.workType + ': ' + reference.title %></option>
+                        <% }) %>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Edit copy modal -->
+<div class="modal fade" id="editCopyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <form role="form" id="editWork" data-id="">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Edit copy</h4>
+                </div>
+
+                <div class="modal-body">
+                    <input type="hidden" name="id">
+                    <div class="form-group">
+                        <label for="">ISBN</label>
+                        <input type="text" class="form-control" required="true" name="isbn" placeholder="Enter ISBN">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
