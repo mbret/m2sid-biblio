@@ -117,6 +117,9 @@ var editWorkModal = '#editWorkModal';
         // Remove data before sending if user didn't changed them
         var dataToSend = $(this).serializeObject();
         if( dataToSend.title == $(this).find('input[name="title"]').data('oldValue')) delete dataToSend.title;
+        if( dataToSend.publishedDate == $(this).find('input[name="publishedDate"]').data('oldValue')) delete dataToSend.publishedDate;
+        if( dataToSend.volume == $(this).find('input[name="volume"]').data('oldValue')) delete dataToSend.volume;
+        if( dataToSend.number == $(this).find('input[name="number"]').data('oldValue')) delete dataToSend.number;
 
         button.button('loading');
         $.ajax({
@@ -131,7 +134,7 @@ var editWorkModal = '#editWorkModal';
                 data: { type: "success", message: "Work updated" }
             })
             .always(function() {
-                    redirect( 'customers' );
+                    redirect( 'literaryworks' );
                 });
         })
         .fail(function( error ) {

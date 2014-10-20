@@ -24,7 +24,8 @@ module.exports = function notFound (data, options) {
   var res = this.res;
   var sails = req._sails;
 
-    res.locals.layout = false;
+    res.locals.section = "error"; // tell the section to layout
+    res.locals.title = "Page not found";
 
   // Set status code
   res.status(404);

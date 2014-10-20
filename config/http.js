@@ -41,7 +41,7 @@ module.exports.http = {
        'methodOverride',
        'poweredBy',
        '$custom',
-//      'devHook',
+      'devHook', // Some hook useful for dev
        'router',
        'www',
        'favicon',
@@ -55,9 +55,16 @@ module.exports.http = {
   *                                                                           *
   ****************************************************************************/
 
+      /**
+       * Here are some hook useful for dev purpose
+       */
         devHook: function(req, res, next){
-            req.session.authenticated = true;
-            req.session.userID = 'librarian1';
+            // Auto log
+            if( sails.config.general.autoLogon === true ){
+                req.session.authenticated = true;
+//                req.session.userID = 'librarian1';
+                req.session.userName = 'maxime';
+            }
             return next();
         },
 

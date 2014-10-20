@@ -14,12 +14,13 @@
 
 module.exports = function serverError (data, options) {
 
-  // Get access to `req`, `res`, & `sails`
-  var req = this.req;
-  var res = this.res;
-  var sails = req._sails;
+    // Get access to `req`, `res`, & `sails`
+    var req = this.req;
+    var res = this.res;
+    var sails = req._sails;
 
-    res.locals.layout = false;
+    res.locals.section = "error"; // tell the section to layout
+    res.locals.title = "Server error";
 
   // Set status code
   res.status(500);

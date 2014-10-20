@@ -43,7 +43,7 @@
         <%- body %>
 
     <% }else if(section == 'dashboard'){ %>
-        <%- partial('partials/dashboard.ejs') %>
+        <% include dashboard/layout %>
 
     <% }else{ %>
         <%- body %>
@@ -125,6 +125,7 @@
         <script src="/js/dependencies/pnotify.custom.js"></script>
         <script src="/js/global.js"></script>
         <!--SCRIPTS END-->
+        <%- blocks.localScripts %>
 
     </body>
 </html>

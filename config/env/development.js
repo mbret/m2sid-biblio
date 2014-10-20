@@ -19,6 +19,10 @@ module.exports = {
 
     models: {
         migrate: 'drop'
+    },
+
+    general: {
+        autoLogon: false
     }
 
 };

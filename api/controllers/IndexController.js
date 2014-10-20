@@ -26,6 +26,7 @@ module.exports = {
     logout: function(req, res){
         req.session.authenticated = false;
         req.session.userID = false;
+        req.session.userName = false;
         req.flash('success', 'You have been logged out!');
         res.redirect('/');
     },
