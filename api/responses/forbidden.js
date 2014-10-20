@@ -19,7 +19,8 @@ module.exports = function forbidden (data, options) {
   var res = this.res;
   var sails = req._sails;
 
-    res.locals.layout = false;
+    res.locals.section = "error"; // tell the section to layout
+    res.locals.title = "Access forbidden";
 
   // Set status code
   res.status(403);

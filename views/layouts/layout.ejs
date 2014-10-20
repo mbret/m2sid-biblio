@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Library manager</title>
+    <title>Library manager : <%= title %></title>
 
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -37,33 +37,18 @@
     <!--STYLES END-->
   </head>
 
-  <body class="wrapper-dashboard">
+  <body class="wrapper-<%= section %>">
 
+    <% if(section == 'login'){ %>
+        <%- body %>
 
-        <%- partial('../dashboard/partial/navbar.ejs') %>
+    <% }else if(section == 'dashboard'){ %>
+        <%- partial('partials/dashboard.ejs') %>
 
+    <% }else{ %>
+        <%- body %>
 
-        <div class="container-fluid">
-            <div class="row">
-
-
-                <%- partial('../dashboard/partial/leftpanel.ejs') %>
-
-                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
-                    <%- body %>
-
-                </div>
-            </div>
-        </div>
-
-
-        <div id="global-zeroclipboard-html-bridge" class="global-zeroclipboard-container" style="position: absolute; left: 0px; top: -9999px; width: 15px; height: 15px; z-index: 999999999;" title="" data-original-title="Copy to clipboard">      <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" id="global-zeroclipboard-flash-bridge" width="100%" height="100%">         <param name="movie" value="/assets/flash/ZeroClipboard.swf?noCache=1412325483656">         <param name="allowScriptAccess" value="sameDomain">         <param name="scale" value="exactfit">         <param name="loop" value="false">         <param name="menu" value="false">         <param name="quality" value="best">         <param name="bgcolor" value="#ffffff">         <param name="wmode" value="transparent">         <param name="flashvars" value="trustedOrigins=getbootstrap.com%2C%2F%2Fgetbootstrap.com%2Chttp%3A%2F%2Fgetbootstrap.com">         <embed src="/assets/flash/ZeroClipboard.swf?noCache=1412325483656" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="100%" height="100%" name="global-zeroclipboard-flash-bridge" allowscriptaccess="sameDomain" allowfullscreen="false" type="application/x-shockwave-flash" wmode="transparent" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="trustedOrigins=getbootstrap.com%2C%2F%2Fgetbootstrap.com%2Chttp%3A%2F%2Fgetbootstrap.com" scale="exactfit">                </object></div><div id="feedly-mini" title="feedly Mini tookit"></div>
-
-
-
-
-
+    <% } %>
 
     <!--
         Client-side Templates
@@ -114,7 +99,22 @@
 
     -->
 
-        <%- partial('../layouts/partial/commonJS.ejs') %>
+        <script>
+            var flashMessages = {
+                info: {
+                    title: 'Information',
+                    message: '<%- req.flash('info') %>'
+                },
+                success: {
+                    title: 'Success',
+                    message: '<%- req.flash('success') %>'
+                },
+                error: {
+                    title: 'Error',
+                    message: '<%- req.flash('error') %>'
+                }
+            }
+        </script>
 
         <!--SCRIPTS-->
         <script src="/js/dependencies/sails.io.js"></script>
@@ -124,8 +124,7 @@
         <script src="/js/dependencies/moment-with-locales-2.8.3.js"></script>
         <script src="/js/dependencies/pnotify.custom.js"></script>
         <script src="/js/global.js"></script>
-        <script src="/js/views/customers.js"></script>
-        <script src="/js/views/literaryworks.js"></script>
         <!--SCRIPTS END-->
+
     </body>
 </html>

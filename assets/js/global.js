@@ -30,8 +30,10 @@ function getObjectByID( id, arrayOfObjects ){
      * Handle flash message for each request
      */
     for (var key in flashMessages) {
+
         var obj = flashMessages[key];
         if(obj.message){
+            console.log('haha');
             new PNotify({
                 title: obj.title,
                 text: obj.message,

@@ -22,17 +22,17 @@ module.exports.policies = {
     '*': false,
 
     IndexController: {
-        '*': ['isLoggedIn'],
-        login: ['isNotLoggedIn'],
+        '*': ['isLoggedIn'], // redirect to login page otherwise
+        login: ['isNotLoggedIn'], // redirect to home page otherwise
         loginService: true
     },
 
     'api/CustomerController': {
-        '*': ['isLoggedIn']
+        '*': ['isAuth'] // redirect to forbidden page otherwise
     },
 
     'api/LiteraryWorkController': {
-        '*': ['isLoggedIn']
+        '*': ['isAuth'] // redirect to forbidden page otherwise
     }
 
 };

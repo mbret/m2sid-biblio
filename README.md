@@ -8,4 +8,7 @@ Here is the main three part of the application:
 - Web server that serve the web tool management (Node.js)
 - Web service REST that is used by the web tool to interact with database.
 
-Web server and web service are built inside same app which is also built around sails.js.
+Web server and web service are built inside same app which is also built with sails.js.
+
+## Some information
+- Access account: maxime / password

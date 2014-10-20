@@ -8,13 +8,18 @@
 module.exports = {
 
     index: function (req, res) {
-        return res.view('dashboard/index');
+        return res.view('dashboard/index', {
+            section: 'dashboard',
+            title: 'Home'
+        });
     },
 
     login: function (req, res) {
 //        res.locals.layout = 'layouts/login.ejs';
         return res.view('login', {
-            layout: 'layouts/login.ejs'
+            section: 'login',
+            title: 'Login'
+//            layout: 'layouts/login.ejs'
         });
     },
 
@@ -26,12 +31,9 @@ module.exports = {
     },
 
     customers: function(req, res){
-//        Customer.find().exec(function callback(err, customers){
-//            if(err) return res.serverError(err);
-            return res.view('dashboard/customers', {
-//                customers: customers
-            })
-//        });
+        return res.view('dashboard/customers', {
+            section: 'dashboard'
+        })
     },
 
     /**
@@ -42,7 +44,8 @@ module.exports = {
      */
     literaryworks: function(req, res){
         return res.view('dashboard/literaryworks', {
-            works: null
+            works: null,
+            section: 'dashboard'
         })
     },
 
@@ -61,7 +64,8 @@ module.exports = {
             else{
                 req.session.authenticated = true;
                 req.session.userID = user.ID;
-                console.log(req.session);
+                req.session.userName = user.login;
+                req.flash('success', 'You have been logged in!');
                 return res.ok();
             }
         });
