@@ -1,6 +1,6 @@
 # m2sid-biblio
 
-Welcome to this project, this is a simple web tool library management written with Node.js behind.
+Welcome to this project, this is a simple library web tool management written with Node.js behind.
 The framework [Sails](http://sailsjs.org) is used for the Node.js part.
 
 Here is the main three part of the application:
