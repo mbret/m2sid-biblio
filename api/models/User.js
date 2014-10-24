@@ -8,6 +8,8 @@
 module.exports = {
 
 //    connection: 'mySQLDb',
+    identity: 'User',
+//    schema          :true,
 
   attributes: {
 
@@ -19,29 +21,19 @@ module.exports = {
           autoIncrement: true,
           unique: true,
           index: true,
-          primaryKey: true,
-          columnName: 'userID'
+          primaryKey: true
       },
       login: {
           type: 'string',
           required: true,
-          unique: true,
-          columnName: "userLogin"
+          unique: true
       },
       password: {
           type: 'string',
           minLength: 1,
-          required: true,
-          columnName: "userPassword"
-      },
-
-      a: function(){
-
+          required: true
       }
-      /*
-       * Other fields
-       */
-  },
+
+  }
 
 };
-

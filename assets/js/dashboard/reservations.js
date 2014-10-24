@@ -2,6 +2,7 @@
 var works = {};
 var editWorkForm = '#editWork';
 var editWorkModal = '#editWorkModal';
+var createResaForm = '#createReservation';
 
 /**====================================
  *      Init & others
@@ -11,26 +12,25 @@ var editWorkModal = '#editWorkModal';
     /*
      * Load and display customer table
      */
-    console.log("Works table loading");
     $.ajax({
         type: "get",
-        url: "/api/literaryworks",
+        url: routes.reservations.apiUri,
         data: null
     })
     .done(function( response ) {
         console.log(response);
-        works = response.works;
+        objects = response.reservations;
         var html = '';
-        for(var i = 0; i < works.length; i++){
+        for(var i = 0; i < objects.length; i++){
             html +=
-                '<tr><td>' + works[i].ID + '</td>' +
-                '<td>' + works[i].title + '</td>' +
-                '<td>' + ((works[i].workType == 'book')? '<span class="glyphicon glyphicon-book" title="book"></span>' : '<span class="glyphicon glyphicon-list-alt" title="magazine"></span>') + '</td>' +
-                '<td>' + moment(works[i].publishedDate).format('MMMM Do YYYY') + '</td>' +
-                '<td>' + ((!works[i].volume) ? '-' : works[i].volume) + '</td>' +
-                '<td>' + ((!works[i].number) ? '-' : works[i].number) + '</td>' +
-                '<td><span class="btn-icon glyphicon glyphicon-trash btn-remove-work" data-id="' + works[i].ID +'"></span>' +
-                '<span class="btn-icon glyphicon glyphicon-edit btn-edit-work" data-id="' + works[i].ID +'" data-toggle="modal" data-target="#editWorkModal"></span></td></tr>';
+                '<tr><td>' + objects[i].ID + '</td>' +
+                '<td>' + objects[i].work.title + '</td>' +
+                '<td>' + ((objects[i].workType == 'book')? '<span class="glyphicon glyphicon-book" title="book"></span>' : '<span class="glyphicon glyphicon-list-alt" title="magazine"></span>') + '</td>' +
+                '<td>' + moment(objects[i].bookedAt).format('YYYY-MM-DD h:mm:ss a') + '</td>' +
+                '<td>' + objects[i].user.login + '</td>' +
+                '<td>' + objects[i].customer.name + '</td>' +
+                '<td><span class="btn-icon glyphicon glyphicon-trash btn-remove-work" data-id="' + objects[i].ID +'"></span>' +
+                '<span class="btn-icon glyphicon glyphicon-edit btn-edit-work" data-id="' + objects[i].ID +'" data-toggle="modal" data-target="#editWorkModal"></span></td></tr>';
         }
         $('#worksTable tbody').first().after(html);
     })
@@ -43,52 +43,45 @@ var editWorkModal = '#editWorkModal';
 }(jQuery));
 
 /**====================================
- *       Work creation
+ *       Resa creation
  ======================================*/
 (function ($) {
 
     /**
-     * Add work form
+     *
      */
-    $("#addWork").on('submit', function( event ){
+    $(createResaForm).on('submit', function( event ){
         event.preventDefault();
         var button = $(this).find("button[type='submit']");
         button.button('loading');
         $.ajax({
             type: "post",
-            url: "/api/literaryworks",
+            url: routes.reservations.apiUri,
             data: $(this).serialize()
         })
-            .done(function( response ) {
-                console.log(response);
-                $.ajax({
-                    type: "POST",
-                    url: "/api/flash",
-                    data: { type: "success", message: "Work created" }
-                })
-                    .always(function() {
-//                        redirect( 'literaryworks' );
-                    });
-            })
-            .fail(function( error ) {
-                console.log(error);
-                if(error.status == 400){
-                    alert(messages.badRequest);
-                }
-                else{
-                    alert(messages.serverError);
-                }
+        .done(function( response ) {
+            console.log(response);
+            $.ajax({
+                type: "POST",
+                url: routes.flash.apiUri,
+                data: { type: "success", message: messages.reservationCreated }
             })
             .always(function() {
-                button.button('reset');
+                    redirect( routes.reservations.url );
             });
-    });
-    /**
-     * Display extra form whether is book or magazine chosen
-     */
-    $('#addWork input[name="type"]').on('click', function( event ){
-        $('#addWork .extra-form:visible').addClass('hide').find('input').prop('disabled', true);
-        $('#addWork .extra-form-' + $(this).val()).removeClass('hide').find('input').prop('disabled', false);
+        })
+        .fail(function( error ) {
+            console.log(error);
+            if(error.status == 400){
+                alert(messages.badRequest);
+            }
+            else{
+                alert(messages.serverError);
+            }
+        })
+        .always(function() {
+            button.button('reset');
+        });
     });
 
 
@@ -129,7 +122,7 @@ var editWorkModal = '#editWorkModal';
         .done(function( response ) {
             $.ajax({
                 type: "POST",
-                url: "/api/flash",
+                url: routes.flash.apiUri,
                 data: { type: "success", message: "Work updated" }
             })
             .always(function() {
@@ -201,7 +194,7 @@ var editWorkModal = '#editWorkModal';
                     console.log(response);
                     $.ajax({
                         type: "post",
-                        url: "/api/flash",
+                        url: routes.flash.apiUri,
                         data: { type: "success", message: "Work deleted" }
                     })
                         .always(function () {

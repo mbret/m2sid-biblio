@@ -79,4 +79,7 @@ module.exports.routes = {
     'delete /api/literaryworks/:id': 'api/LiteraryWorkController.delete',
     'put /api/literaryworks': 'api/LiteraryWorkController.update',
 
+    'post /api/reservations': 'api/ReservationController.create',
+    'get /api/reservations': 'api/ReservationController.findMultiple'
+
 };

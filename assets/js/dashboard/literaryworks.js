@@ -14,7 +14,7 @@ var editWorkModal = '#editWorkModal';
     console.log("Works table loading");
     $.ajax({
         type: "get",
-        url: "/api/literaryworks",
+        url: routes.literaryWorks.apiUri,
         data: null
     })
     .done(function( response ) {
@@ -56,19 +56,19 @@ var editWorkModal = '#editWorkModal';
         button.button('loading');
         $.ajax({
             type: "post",
-            url: "/api/literaryworks",
+            url: routes.literaryWorks.apiUri,
             data: $(this).serialize()
         })
             .done(function( response ) {
                 console.log(response);
                 $.ajax({
                     type: "POST",
-                    url: "/api/flash",
+                    url: routes.flash.apiUri,
                     data: { type: "success", message: "Work created" }
                 })
-                    .always(function() {
-//                        redirect( 'literaryworks' );
-                    });
+                .always(function() {
+                    redirect( routes.literaryWorks.url );
+                });
             })
             .fail(function( error ) {
                 console.log(error);
@@ -123,17 +123,17 @@ var editWorkModal = '#editWorkModal';
         button.button('loading');
         $.ajax({
             type: "put",
-            url: "/api/literaryworks",
+            url: routes.literaryWorks.apiUri,
             data: dataToSend
         })
         .done(function( response ) {
             $.ajax({
                 type: "POST",
-                url: "/api/flash",
+                url: routes.flash.apiUri,
                 data: { type: "success", message: "Work updated" }
             })
             .always(function() {
-                    redirect( 'literaryworks' );
+                    redirect( routes.literaryWorks.url );
                 });
         })
         .fail(function( error ) {
@@ -194,18 +194,18 @@ var editWorkModal = '#editWorkModal';
         if(confirm(messages.confirm)) {
             $.ajax({
                 type: "delete",
-                url: "/api/literaryworks/" + $(this).data("id"),
+                url: routes.literaryWorks.apiUri + "/" + $(this).data("id"),
                 data: null
             })
                 .done(function (response) {
                     console.log(response);
                     $.ajax({
                         type: "post",
-                        url: "/api/flash",
+                        url: routes.flash.apiUri,
                         data: { type: "success", message: "Work deleted" }
                     })
                         .always(function () {
-                            redirect('literaryworks');
+                            redirect( routes.literaryWorks.url );
                         });
                 })
                 .fail(function (error) {

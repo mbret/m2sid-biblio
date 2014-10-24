@@ -49,8 +49,22 @@ module.exports = {
     },
 
     reservations: function(req, res){
-        return res.view(viewPath + '/reservations', {
-           section: 'dashboard'
+        var data = {
+            section: 'dashboard',
+            title: 'Reservations'
+        };
+
+        LiteraryWorkBaseModel.find().then(function( works ) {
+            data.references = works;
+            return Customer.find().then(function( customers ) {
+                data.customers = customers;
+            });
+
+        }).then(function() {
+            return res.view(viewPath + '/reservations', data );
+
+        }).catch(function(err){
+            return res.serverError(err);
         });
     }
 

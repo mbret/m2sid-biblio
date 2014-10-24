@@ -2,7 +2,30 @@ var messages = {
     serverError: "Something went wrong, please try later!",
     badCredential: "Wrong credential!",
     badRequest: "Please verify your form, some information are not valid!",
-    confirm: "Are you sure?"
+    confirm: "Are you sure?",
+
+    reservationCreated: "Reservation created!"
+}
+
+var routes = {
+    literaryWorks: {
+        url: 'literaryworks',
+        apiUri: '/api/literaryworks'
+    },
+    customers: {
+        url: 'customers',
+        apiUri: '/api/reservations'
+    },
+    reservations: {
+        url: 'reservations',
+        apiUri: '/api/reservations'
+    },
+    flash: {
+        apiUri: '/api/flash'
+    },
+    login: {
+        apiUri: '/api/login'
+    }
 }
 
 //var routes = {
@@ -60,7 +83,7 @@ function getObjectByID( id, arrayOfObjects ){
         button.button('loading');
         $.ajax({
             type: "POST",
-            url: "/api/login",
+            url: routes.login.apiUri,
             data: $(this).serialize()
         })
         .done(function( response ) {

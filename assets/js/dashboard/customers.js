@@ -11,7 +11,7 @@ $(function() {
         console.log("Customer table loading");
         $.ajax({
             type: "get",
-            url: "/api/customers",
+            url: routes.customers.apiUri,
             data: null
         })
         .done(function( response ) {
@@ -45,18 +45,18 @@ $(function() {
         button.button('loading');
         $.ajax({
             type: "post",
-            url: "/api/customers",
+            url: routes.customers.apiUri,
             data: $(this).serialize()
         })
         .done(function( response ) {
             console.log(response);
             $.ajax({
                 type: "POST",
-                url: "/api/flash",
+                url: routes.flash.apiUri,
                 data: { type: "success", message: "Customer created" }
             })
             .always(function() {
-                redirect( 'customers' );
+                redirect( routes.customers.url );
             });
         })
         .fail(function( error ) {
@@ -81,18 +81,18 @@ $(function() {
         if(confirm(messages.confirm)) {
             $.ajax({
                 type: "delete",
-                url: "/api/customers/" + $(this).data("id"),
+                url: routes.customers.apiUri + "/" + $(this).data("id"),
                 data: null
             })
             .done(function (response) {
                 console.log(response);
                 $.ajax({
                     type: "post",
-                    url: "/api/flash",
+                    url: routes.flash.apiUri,
                     data: { type: "success", message: "Customer deleted" }
                 })
                 .always(function () {
-                    redirect('customers');
+                    redirect( routes.customers.url );
                 });
             })
             .fail(function (error) {
@@ -121,17 +121,17 @@ $(function() {
         button.button('loading');
         $.ajax({
             type: "put",
-            url: "/api/customers",
+            url: routes.customers.apiUri,
             data: dataToSend
         })
         .done(function( response ) {
             $.ajax({
                 type: "POST",
-                url: "/api/flash",
+                url: routes.flash.apiUri,
                 data: { type: "success", message: "Customer updated" }
             })
             .always(function() {
-                redirect( 'customers' );
+                redirect( routes.customers.url );
             });
         })
         .fail(function( error ) {
