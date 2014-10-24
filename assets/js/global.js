@@ -33,7 +33,6 @@ function getObjectByID( id, arrayOfObjects ){
 
         var obj = flashMessages[key];
         if(obj.message){
-            console.log('haha');
             new PNotify({
                 title: obj.title,
                 text: obj.message,

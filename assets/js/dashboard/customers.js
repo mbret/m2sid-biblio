@@ -41,7 +41,6 @@ $(function() {
      */
     $("#addCustomer").on('submit', function( event ){
         event.preventDefault();
-        console.log('sd');
         var button = $(this).find("button[type='submit']");
         button.button('loading');
         $.ajax({

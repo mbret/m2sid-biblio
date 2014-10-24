@@ -22,7 +22,7 @@ module.exports = {
     },
 
     general: {
-        autoLogon: false
+        autoLogon: true
     }
 
 };

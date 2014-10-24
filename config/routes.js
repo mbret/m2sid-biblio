@@ -56,6 +56,7 @@ module.exports.routes = {
     'get /customers': 'DashboardController.customers',
     'get /literaryworks': 'DashboardController.literaryworks',
     'get /literarycopies': 'DashboardController.literarycopies',
+    'get /reservations': 'DashboardController.reservations',
 
     /*
      * HELPER API
@@ -76,5 +77,6 @@ module.exports.routes = {
     'get /api/literaryworks': 'api/LiteraryWorkController.findMultiple',
     'post /api/literaryworks': 'api/LiteraryWorkController.create',
     'delete /api/literaryworks/:id': 'api/LiteraryWorkController.delete',
-    'put /api/literaryworks': 'api/LiteraryWorkController.update'
+    'put /api/literaryworks': 'api/LiteraryWorkController.update',
+
 };
