@@ -1,0 +1,111 @@
+
+<h1 class="page-header">Dashboard: Literary works</h1>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-8">
+
+            <h2 class="sub-header">Manage works</h2>
+            <table class="table table-striped" id="worksTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Published date</th>
+                        <th>Volume</th>
+                        <th>Number</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody><!-- Content are loaded dynamically --></tbody>
+            </table>
+
+        </div>
+
+        <div class="col-md-4">
+            <h2 class="sub-header">Add a work</h2>
+
+            <form role="form" id="addWork">
+                <div class="form-group">
+                    <label for="">Name</label>
+                    <input type="text" class="form-control" required="true" name="title" placeholder="Enter title">
+                </div>
+                <div class="form-group">
+                    <label for="">Published date</label>
+                    <input type="date" class="form-control" required="true" name="publishedDate" placeholder="Enter published date">
+                </div>
+                <div class="form-group">
+                    <label class="radio-inline">
+                        <input type="radio" name="type" id="radioTypeBook" value="book" required="true"> Book
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="type" id="radioTypeBook" value="magazine"> Magazine
+                    </label>
+                </div>
+                <div class="form-group extra-form extra-form-book hide">
+                    <label for="">Volume number</label>
+                    <input type="number" class="form-control" required="true" name="volume" placeholder="Enter number" disabled>
+                </div>
+                <div class="form-group extra-form extra-form-magazine hide">
+                    <label for="">Magazine Number</label>
+                    <input type="text" class="form-control" required="true" name="number" placeholder="Enter title" disabled>
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Edit customer modal -->
+<div class="modal fade" id="editWorkModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <form role="form" id="editWork" data-id="">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Edit work</h4>
+                </div>
+
+                <div class="modal-body">
+                    <input type="hidden" name="id">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Title</label>
+                        <input type="text" class="form-control" required="true" name="title" placeholder="Enter title">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Published date</label>
+                        <input type="date" class="form-control" required="true" name="publishedDate" placeholder="Enter published date">
+                    </div>
+                    <div class="form-group">
+                        <label class="radio-inline">
+                            <input type="radio" name="type" id="radioTypeBookEdit" value="book" required="true"> Book
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="type" id="radioTypeMagazineEdit" value="magazine"> Magazine
+                        </label>
+                    </div>
+                    <div class="form-group extra-form extra-form-book hide">
+                        <label for="exampleInputEmail1">Volume number</label>
+                        <input type="number" class="form-control" required="true" name="volume" placeholder="Enter number" disabled>
+                    </div>
+                    <div class="form-group extra-form extra-form-magazine hide">
+                        <label for="exampleInputEmail1">Magazine Number</label>
+                        <input type="text" class="form-control" required="true" name="number" placeholder="Enter title" disabled>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

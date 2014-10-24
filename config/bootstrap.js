@@ -21,6 +21,7 @@ module.exports.bootstrap = function(cb) {
         Book.create({title:'book 1', workType:'book', volume:1, publishedDate: '2014-10-05'}),
         Book.create({title:'book 2', workType:'book', volume:1, publishedDate: '2012-10-05'}),
         Magazine.create({title:'Magazine a', workType:'magazine', number:18, publishedDate: '2010-08-05'}),
+
     ]).then(function() {
         sails.log.info('All data loaded inside database');
         return cb();

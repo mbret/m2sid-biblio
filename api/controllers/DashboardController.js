@@ -11,15 +11,18 @@ var viewPath = 'dashboard/views';
 module.exports = {
 
     index: function (req, res) {
+
         return res.view(viewPath + '/index', {
             section: 'dashboard',
             title: 'Home'
         });
+
     },
 
     customers: function(req, res){
         return res.view(viewPath + '/customers', {
-            section: 'dashboard'
+            section: 'dashboard',
+            title: 'Customers'
         })
     },
 
@@ -28,7 +31,7 @@ module.exports = {
      */
     literaryworks: function(req, res){
         return res.view(viewPath + '/literaryworks', {
-            works: null,
+            title: 'Literary works',
             section: 'dashboard'
         })
     },
@@ -38,10 +41,17 @@ module.exports = {
             if(err) return res.serverError(err);
             return res.view(viewPath + '/literarycopies', {
                 references: works,
-                section: 'dashboard'
+                section: 'dashboard',
+                title: 'Literary copies'
             })
         });
 
+    },
+
+    reservations: function(req, res){
+        return res.view(viewPath + '/reservations', {
+           section: 'dashboard'
+        });
     }
 
 };

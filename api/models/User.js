@@ -33,11 +33,15 @@ module.exports = {
           minLength: 1,
           required: true,
           columnName: "userPassword"
-      }
+      },
 
+      a: function(){
+
+      }
       /*
        * Other fields
        */
-  }
+  },
+
 };
 
