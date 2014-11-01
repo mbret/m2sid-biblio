@@ -7,10 +7,6 @@
 
 module.exports = {
 
-    identity: 'LiteraryWorkBaseModel',
-    tableName: 'literarywork',
-
-//    connection: 'mySQLDb',
 
     attributes: {
 

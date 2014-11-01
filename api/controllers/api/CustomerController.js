@@ -38,7 +38,6 @@ module.exports = {
 
     delete: function (req, res) {
 
-        console.log("qsdsqd");
         // If we find customer
         Customer.findOne({'ID':req.param('id')}).then(function(customer){
             if(!customer) return res.notFound();
@@ -67,7 +66,7 @@ module.exports = {
         // Query to update
         var query = {
             'ID': req.param('id')
-        }
+        };
 
         // Update process
         Customer.update(query, data, function(err, customer) {

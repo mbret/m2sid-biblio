@@ -37,7 +37,7 @@ module.exports = {
     },
 
     literarycopies: function(req, res){
-        LiteraryWorkBaseModel.find( function callback(err, works){
+        LiteraryWork.find( function callback(err, works){
             if(err) return res.serverError(err);
             return res.view(viewPath + '/literarycopies', {
                 references: works,
@@ -54,7 +54,7 @@ module.exports = {
             title: 'Reservations'
         };
 
-        LiteraryWorkBaseModel.find().then(function( works ) {
+        LiteraryWork.find().then(function( works ) {
             data.references = works;
             return Customer.find().then(function( customers ) {
                 data.customers = customers;

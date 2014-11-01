@@ -7,8 +7,6 @@
 
 module.exports = {
 
-    identity: 'Customer',
-
   attributes: {
 
       /*

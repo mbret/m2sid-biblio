@@ -67,19 +67,21 @@ module.exports.routes = {
 
     /*
      * REST API
-     * - used by application as RESTFUL service (no persistence)
+     * - used by application as REST service
      */
     'get /api/customers': 'api/CustomerController.findMultiple',
     'post /api/customers': 'api/CustomerController.create',
     'delete /api/customers/:id': 'api/CustomerController.delete',
-    'put /api/customers': 'api/CustomerController.update',
+    'put /api/customers/:id': 'api/CustomerController.update',
 
     'get /api/literaryworks': 'api/LiteraryWorkController.findMultiple',
     'post /api/literaryworks': 'api/LiteraryWorkController.create',
     'delete /api/literaryworks/:id': 'api/LiteraryWorkController.delete',
-    'put /api/literaryworks': 'api/LiteraryWorkController.update',
+    'put /api/literaryworks/:id': 'api/LiteraryWorkController.update',
 
     'post /api/reservations': 'api/ReservationController.create',
-    'get /api/reservations': 'api/ReservationController.findMultiple'
+    'get /api/reservations': 'api/ReservationController.findMultiple',
+    'delete /api/reservations/:id': 'api/ReservationController.destroy',
+    'put /api/reservations/:id': 'api/ReservationController.update'
 
 };

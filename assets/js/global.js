@@ -4,7 +4,9 @@ var messages = {
     badRequest: "Please verify your form, some information are not valid!",
     confirm: "Are you sure?",
 
-    reservationCreated: "Reservation created!"
+    reservationCreated: "Reservation created!",
+    reservationDeleted: "Reservation deleted!",
+    reservationUpdated: "Reservation updated!"
 }
 
 var routes = {

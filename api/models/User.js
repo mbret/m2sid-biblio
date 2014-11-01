@@ -7,11 +7,12 @@
 
 module.exports = {
 
-//    connection: 'mySQLDb',
-    identity: 'User',
-//    schema          :true,
+    autoPK: true,
+    tableName: 'user',
+    autoUpdatedAt: false,
+    autoCreatedAt: false,
 
-  attributes: {
+    attributes: {
 
       /*
        * BDD fields

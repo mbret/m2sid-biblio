@@ -10,7 +10,7 @@ module.exports = {
     findMultiple: function (req, res) {
 
         // get book and magazines
-        LiteraryWorkBaseModel.find( function callback(err, works){
+        LiteraryWork.find( function callback(err, works){
             if(err) return res.serverError(err);
             return res.ok({
                 works: works
@@ -28,18 +28,7 @@ module.exports = {
         if( req.param('volume') ) data.volume = req.param('volume');
         if( req.param('number') ) data.number = req.param('number');
 
-        var object = null;
-        var type = '';
-        switch( req.param('type') ){
-            case 'book':
-                object = Book;
-                break;
-            case 'magazine':
-                object = Magazine;
-                break;
-            default : return res.badRequest('Please specify a type');
-        }
-        object.create( data ).exec(function(err, work){
+        LiteraryWork.create( data ).exec(function(err, work){
             if(err){
                 if(err.ValidationError) return res.badRequest(err);
                 else return res.serverError(err);
@@ -53,11 +42,11 @@ module.exports = {
 
     delete: function (req, res) {
 
-        LiteraryWorkBaseModel.findOne({'ID':req.param('id')}).then(function(work){
+        LiteraryWork.findOne({'ID':req.param('id')}).then(function(work){
             if(!work) return res.notFound();
 
             // We destroy
-            return LiteraryWorkBaseModel.destroy({ID:req.param('id')});
+            return LiteraryWork.destroy({ID:req.param('id')});
 
         }).then(function(){
             return res.ok();
@@ -87,7 +76,7 @@ module.exports = {
         }
 
         // Update process
-        LiteraryWorkBaseModel.update(query, data, function(err, works) {
+        LiteraryWork.update(query, data, function(err, works) {
             console.log(works);
             if (err) {
                 if(err.ValidationError) return res.badRequest( err );
