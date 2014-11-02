@@ -22,6 +22,10 @@ var routes = {
         url: 'reservations',
         apiUri: '/api/reservations'
     },
+    loans: {
+        url: 'loans',
+        apiUri: '/api/loans'
+    },
     flash: {
         apiUri: '/api/flash'
     },

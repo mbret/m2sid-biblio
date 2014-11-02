@@ -27,6 +27,11 @@ module.exports = {
         state: {
             type: 'string',
             enum: ['rented', 'available']
+        },
+
+        work: {
+            model: 'literaryWork',
+            required: true
         }
     }
 

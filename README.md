@@ -33,5 +33,12 @@ Web server and web service are built inside same app which is also built with sa
 - Visit [http://localhost:1337](http://localhost:1337)
 
 ## Library
+
 ### Constraints
-- sqd
+
+#### Reservations
+- One user can make only one reservation at the same time for a book
+
+#### Loan
+- One customer can borrow a copy only if this copy is available
+- A copy is available if the number of reservation < number of copy which are not lend.

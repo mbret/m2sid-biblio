@@ -66,6 +66,26 @@ module.exports = {
         }).catch(function(err){
             return res.serverError(err);
         });
+    },
+
+    loans: function(req, res){
+        var data = {
+            section: 'dashboard',
+            title: 'Loans'
+        };
+
+        Exemplary.find().populate('work').then(function( copies ) {
+            data.copies = copies;
+            return Customer.find().then(function( customers ) {
+                data.customers = customers;
+            });
+
+        }).then(function() {
+            return res.view(viewPath + '/loans', data );
+
+        }).catch(function(err){
+            return res.serverError(err);
+        });
     }
 
 };
