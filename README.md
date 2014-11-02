@@ -31,3 +31,7 @@ Web server and web service are built inside same app which is also built with sa
 - Run `npm install` inside project root
 - Launch web server with `sails lift`
 - Visit [http://localhost:1337](http://localhost:1337)
+
+## Library
+### Constraints
+- sqd

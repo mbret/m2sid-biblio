@@ -123,7 +123,7 @@ var editWorkModal = '#editWorkModal';
         button.button('loading');
         $.ajax({
             type: "put",
-            url: routes.literaryWorks.apiUri,
+            url: routes.literaryWorks.apiUri + '/' + dataToSend.id,
             data: dataToSend
         })
         .done(function( response ) {

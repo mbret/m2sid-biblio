@@ -121,7 +121,7 @@ $(function() {
         button.button('loading');
         $.ajax({
             type: "put",
-            url: routes.customers.apiUri,
+            url: routes.customers.apiUri + '/' + dataToSend.id,
             data: dataToSend
         })
         .done(function( response ) {

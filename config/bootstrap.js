@@ -20,10 +20,10 @@ module.exports.bootstrap = function(cb) {
         Customer.create({name: 'Joris', ID: 3}),
         LiteraryWork.create({title:'book 1', workType:'book', volume:1, publishedDate: '2014-10-05', ID: 1}),
         LiteraryWork.create({title:'book 2', workType:'book', volume:1, publishedDate: '2012-10-05', ID: 2}),
-        LiteraryWork.create({title:'Magazine a', workType:'magazine', number:18, publishedDate: '2010-08-05'}),
+        LiteraryWork.create({title:'Magazine a', workType:'magazine', number:18, publishedDate: '2010-08-05', ID: 3}),
         Reservation.create({bookedAt:'2010-08-05 22:12:00', work:1, user:1, customer:1}),
         Reservation.create({work:1, user:1, customer:1}),
-        Reservation.create({work:2, user:1, customer:3}),
+        Reservation.create({work:3, user:1, customer:3}),
         Reservation.create({work:2, user:1, customer:3})
 
     ]).then(function() {
