@@ -93,7 +93,6 @@ var deleteElement = '.btn-remove-reservation';
  ======================================*/
 (function ($) {
 
-
     /**
      * Edit a reservation
      *
@@ -123,7 +122,7 @@ var deleteElement = '.btn-remove-reservation';
                 redirect( routes.reservations.url );
             });
         })
-        .fail(function( error ) {
+        .fail(function( error ){
             console.log(error);
             if(error.status == 400){
                 alert(messages.badRequest);

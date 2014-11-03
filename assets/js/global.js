@@ -8,7 +8,7 @@ var messages = {
     reservationDeleted: "Reservation deleted!",
     reservationUpdated: "Reservation updated!",
     loanCreated: "Loan created!",
-    loanDeleted: "Loan deleted!",
+    loanDeleted: "Loan ended!",
     loanUpdated: "Loan updated!"
 }
 

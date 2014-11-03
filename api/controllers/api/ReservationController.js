@@ -13,7 +13,7 @@ module.exports = {
             if(err) return res.serverError(err);
             return res.ok({
                 reservations: reservations
-            })
+            });
         });
     },
 

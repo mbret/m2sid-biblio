@@ -68,7 +68,7 @@ module.exports = {
     },
 
     /**
-     * Delete a loan.
+     * Delete a loan. (when user give back book)
      * - set the copy as available
      * @param req
      * @param res
@@ -78,19 +78,48 @@ module.exports = {
             if(!loan) return res.notFound();
 
             // We destroy
-            return loan.destroy({ID:req.param('id')}).then(function(){
+            return Loan.destroy({ID:req.param('id')}).then(function(){
                 return loan;
             });
 
         }).then(function( loan ){
+            console.log(loan);
             // Then set copy as available
-            return Exemplrary.update({state:'available'}, {ID:loan.copy}).then(function(){
+            return Exemplary.update({ID:loan.copy}, {state:'available'}).then(function(){
                 return res.ok();
             });
         }).fail(function(err){
-                return res.serverError(err);
-            });
+            return res.serverError(err);
+        });
+    },
+
+
+
+    update: function (req, res) {
+
+        // Check required params
+        if( !req.param('id') ) return res.badRequest();
+
+        // user data
+        var data = {};
+
+        // Query to update
+        var query = {
+            'ID': req.param('id')
         }
+
+        // Update process
+        Loan.update(query, data, function(err, loans) {
+            if (err) {
+                if(err.ValidationError) return res.badRequest( err );
+                else return res.serverError(err);
+            }
+            if(!loans || loans.length < 1) return res.notFound();
+
+            return res.ok({
+                loan: loans[0]
+            });
+        });
 
     }
 };

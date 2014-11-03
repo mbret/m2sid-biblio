@@ -2,6 +2,8 @@
 var loans = {};
 var createLoanForm = '#createLoan';
 var deleteElement = '.btn-remove-loan';
+var editLoanForm = '#editLoan';
+var editLoanModal = '#editLoanModal';
 
 /**====================================
  *      Init & others
@@ -24,7 +26,7 @@ var deleteElement = '.btn-remove-loan';
                 '<td>' + loans[i].customer.name + '</td>' +
                 '<td>' + loans[i].work.workType + ': ' + loans[i].work.title + '</td>' +
                 '<td>' + loans[i].copy.isbn + '</td>' +
-                '<td><span class="btn-icon glyphicon glyphicon-trash btn-remove-loan" data-id="' + loans[i].ID +'"></span>' +
+                '<td><span class="btn-icon glyphicon glyphicon-remove-circle btn-remove-loan" data-id="' + loans[i].ID +'" title="End a loan"></span>' +
                 '<span class="btn-icon glyphicon glyphicon-edit btn-edit-loan" data-id="' + loans[i].ID +'" data-toggle="modal" data-target="#editLoanModal"></span></td></tr>';
         }
         $('#worksTable tbody').first().after(html);
@@ -116,6 +118,67 @@ var deleteElement = '.btn-remove-loan';
 
 }(jQuery));
 
+
+/**====================================
+ *       Edition
+ ======================================*/
+(function ($) {
+
+
+    /**
+     * Edit a loan
+     *
+     */
+    $(editLoanForm).on('submit', function( event ){
+        event.preventDefault();
+        var button = $(this).find("button[type='submit']");
+
+        // Remove data before sending if user didn't changed them
+        var dataToSend = $(this).serializeObject();
+
+        button.button('loading');
+        $.ajax({
+            type: "put",
+            url: routes.loans.apiUri + '/' + dataToSend.id,
+            data: dataToSend
+        })
+        .done(function( response ) {
+            $.ajax({
+                type: "post",
+                url: routes.flash.apiUri,
+                data: { type: "success", message: messages.loanUpdated }
+            })
+            .always(function() {
+                redirect( routes.loans.url );
+            });
+        })
+        .fail(function( error ) {
+            console.log(error);
+            if(error.status == 400){
+                alert(messages.badRequest);
+            }
+            else{
+                alert(messages.serverError);
+            }
+        })
+        .always(function() {
+            button.button('reset');
+        });
+    });
+
+
+    /**
+     * On edit modal showing
+     * - populate form with current values
+     * - add old value data to know if object has been changed for further jobs
+     */
+    $(editLoanModal).on('show.bs.modal', function ( event ) {
+        var id = $(event.relatedTarget).data('id');
+        var loan = getObjectByID( id, loans );
+        $(this).find('input[name="id"]').val( loan.ID ); // hidden input
+    });
+
+}(jQuery));
 
 /**====================================
  *       Remove

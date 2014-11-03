@@ -70,21 +70,14 @@ module.exports = {
 
 
     loans: function(req, res){
-//        Loan.find().populate('work').populate('copy').populate('user').populate('customer').exec(function callback(err, sdf){
-//            if(err) return res.serverError(err);
-//            console.log(sdf);
-            Customer.find().exec(function( err, customers ) {
-//                console.log(sdf);
-                if(err) return res.serverError(err);
-                return res.view(viewPath + '/loans', {
-//                    loans: sdf,
-                    section: 'dashboard',
-                    title: 'Loans',
-                    customers: customers
-                })
-            });
-
-//        });
+        Customer.find().exec(function( err, customers ) {
+            if(err) return res.serverError(err);
+            return res.view(viewPath + '/loans', {
+                section: 'dashboard',
+                title: 'Loans',
+                customers: customers
+            })
+        });
     }
 
 };
