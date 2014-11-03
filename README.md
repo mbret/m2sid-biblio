@@ -1,16 +1,16 @@
 # m2sid-biblio
 
-Welcome, this project is very simple library web tool management demonstration written with [Sails.js](http://sailsjs.org) and Node.js.
+Welcome on this project page. This project is very simple library web tool management demonstration written with [Sails.js](http://sailsjs.org) and Node.js.
 It was written under a school project, means that it cover just mandatory functionaries about library management.. 
 There are many exception, logic which are not written. eg: (protect app against hack, some integrity through database management about library, etc).
 The front-end use as less dependencies as possible. The logic is handled by Jquery. The dashboard is served by the web server and then interacts with it through REST request.
 
-The application is basically composed by three parts:
+### The application is basically composed by three parts:
 - A front end (The dashboard) written with HTML, CSS, Jquery. The code is as simple and clear as possible.
 - The web server which serve the dashboard (Node.js under Sails.js)
 - The REST part of the web server. (The front-end interact with the server through REST principle).
 
-All of this is a good showcase for "how to implement with sails.js":
+### All of this is a good showcase for "how to implement with sails.js":
 - authentication.
 - REST api.
 - DB management (associations, ..).
