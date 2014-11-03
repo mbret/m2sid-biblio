@@ -74,7 +74,7 @@ module.exports = {
             title: 'Loans'
         };
 
-        Exemplary.find().populate('work').then(function( copies ) {
+        Exemplary.find().populate('reference').then(function( copies ) {
             data.copies = copies;
             return Customer.find().then(function( customers ) {
                 data.customers = customers;

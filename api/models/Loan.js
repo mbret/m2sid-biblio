@@ -16,6 +16,28 @@ module.exports = {
           index: true,
           primaryKey: true
       },
+
+      // User that make resa
+      user: {
+          model: 'user',
+          required: true
+      },
+
+      // For whom is the resa
+      customer: {
+          model: 'customer',
+          required: true
+      },
+
+      work: {
+          model: 'literaryWork',
+          required: true
+      },
+
+      copy: {
+          model: 'exemplary',
+          required: true
+      }
   }
 };
 

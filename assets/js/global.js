@@ -16,7 +16,7 @@ var routes = {
     },
     customers: {
         url: 'customers',
-        apiUri: '/api/reservations'
+        apiUri: '/api/customers'
     },
     reservations: {
         url: 'reservations',
