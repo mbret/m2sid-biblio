@@ -41,6 +41,10 @@ module.exports.policies = {
 
     'api/LiteraryWorkController': {
         '*': ['isAuth'] // redirect to forbidden page otherwise
+    },
+
+    'api/ExemplaryController': {
+        '*': ['isAuth'] // redirect to forbidden page otherwise
     }
 
 };

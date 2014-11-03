@@ -109,6 +109,7 @@ npm-debug.log
 # operating systems, file systems, etc.
 ################################################
 
+
 *~
 *#
 .DS_STORE
@@ -116,3 +117,9 @@ npm-debug.log
 nbproject
 .idea
 .node_history
+=======
+# Users Environment Variables
+.lock-wscript
+
+.idea
+

@@ -26,7 +26,11 @@ module.exports = {
         },
         state: {
             type: 'string',
-            enum: ['rented', 'available']
+            enum: ['rented', 'available', 'booked']
+        },
+
+        reference: {
+            model: 'LiteraryWorkBaseModel'
         }
     }
 

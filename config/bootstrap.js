@@ -18,10 +18,14 @@ module.exports.bootstrap = function(cb) {
         Customer.create({name: 'Maxime'}),
         Customer.create({name: 'Gael'}),
         Customer.create({name: 'Joris'}),
-        Book.create({title:'book 1', workType:'book', volume:1, publishedDate: '2014-10-05'}),
+        Book.create({title:'book 1', workType:'book', volume:1, publishedDate: '2014-10-05', ID:1}),
         Book.create({title:'book 2', workType:'book', volume:1, publishedDate: '2012-10-05'}),
-        Magazine.create({title:'Magazine a', workType:'magazine', number:18, publishedDate: '2010-08-05'}),
+        Magazine.create({title:'Magazine a', workType:'magazine', number:18, publishedDate: '2010-08-05', ID:3}),
     ]).then(function() {
+        return Exemplary.create({isbn:1234, state:'available', reference:1});
+    }).then(function() {
+        return Exemplary.create({isbn:9876, state:'available', reference:3});
+    }).then(function() {
         sails.log.info('All data loaded inside database');
         return cb();
     }).catch(function(e){
