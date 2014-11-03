@@ -26,17 +26,15 @@ module.exports = {
         },
         state: {
             type: 'string',
-            enum: ['rented', 'available', 'booked']
+            enum: ['rented', 'available']
         },
 
         reference: {
-            model: 'LiteraryWorkBaseModel'
-        },
-
-        work: {
-            model: 'literaryWork',
+            model: 'LiteraryWork',
             required: true
         }
+
+
     }
 
 

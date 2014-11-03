@@ -48,6 +48,16 @@ module.exports = {
             type: 'integer',
             columnName: "magazineNumber",
             required: true
+        },
+
+        reservations: {
+            collection: 'reservation',
+            via: 'work'
+        },
+
+        copies: {
+            collection: 'exemplary',
+            via: 'reference'
         }
 
     },
