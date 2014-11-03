@@ -43,15 +43,16 @@ module.exports.policies = {
         '*': ['isAuth'] // redirect to forbidden page otherwise
     },
 
-<<<<<<< HEAD
+
     'api/ExemplaryController': {
-=======
+        '*': ['isAuth'] // redirect to forbidden page otherwise
+    },
+
     'api/ReservationController': {
         '*': ['isAuth'] // redirect to forbidden page otherwise
     },
 
     'api/LoanController': {
->>>>>>> c164e7090ab696f0dc12e4ccf3876fa1af9fe179
         '*': ['isAuth'] // redirect to forbidden page otherwise
     }
 

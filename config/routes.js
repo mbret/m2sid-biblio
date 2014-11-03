@@ -78,15 +78,15 @@ module.exports.routes = {
     'get /api/literaryworks': 'api/LiteraryWorkController.findMultiple',
     'post /api/literaryworks': 'api/LiteraryWorkController.create',
     'delete /api/literaryworks/:id': 'api/LiteraryWorkController.delete',
-<<<<<<< HEAD
-    'put /api/literaryworks': 'api/LiteraryWorkController.update',
+
+    //'put /api/literaryworks': 'api/LiteraryWorkController.update',
 
 
     'get /api/literarycopies': 'api/ExemplaryController.findMultiple',
     'post /api/literarycopies': 'api/ExemplaryController.create',
     //'delete /api/literarycopies/:id': 'api/ExemplaryController.delete',
     //'put /api/literarycopies': 'api/ExemplaryController.update'
-=======
+
     'put /api/literaryworks/:id': 'api/LiteraryWorkController.update',
 
     'post /api/reservations': 'api/ReservationController.create',
@@ -96,5 +96,5 @@ module.exports.routes = {
 
     'get /api/loans': 'api/LoanController.findMultiple',
 
->>>>>>> c164e7090ab696f0dc12e4ccf3876fa1af9fe179
+
 };
