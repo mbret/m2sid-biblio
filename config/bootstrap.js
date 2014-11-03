@@ -34,10 +34,6 @@ module.exports.bootstrap = function(cb) {
             Exemplary.create({isbn:1534, state:'available', reference:1}),
             Exemplary.create({isbn:9876, state:'available', reference:3})
         ]);
-//    }).then(function() {
-//        return LiteraryWork.find().populate('copies', { state: 'available' }).exec(function(err, works){
-//            console.log(works);
-//        });
     }).then(function() {
         sails.log.info('All data loaded inside database');
         return cb();

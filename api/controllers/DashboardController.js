@@ -68,24 +68,23 @@ module.exports = {
         });
     },
 
-    loans: function(req, res){
-        var data = {
-            section: 'dashboard',
-            title: 'Loans'
-        };
 
-        Exemplary.find().populate('reference').then(function( copies ) {
-            data.copies = copies;
-            return Customer.find().then(function( customers ) {
-                data.customers = customers;
+    loans: function(req, res){
+//        Loan.find().populate('work').populate('copy').populate('user').populate('customer').exec(function callback(err, sdf){
+//            if(err) return res.serverError(err);
+//            console.log(sdf);
+            Customer.find().exec(function( err, customers ) {
+//                console.log(sdf);
+                if(err) return res.serverError(err);
+                return res.view(viewPath + '/loans', {
+//                    loans: sdf,
+                    section: 'dashboard',
+                    title: 'Loans',
+                    customers: customers
+                })
             });
 
-        }).then(function() {
-            return res.view(viewPath + '/loans', data );
-
-        }).catch(function(err){
-            return res.serverError(err);
-        });
+//        });
     }
 
 };

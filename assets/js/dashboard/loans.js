@@ -1,6 +1,7 @@
 
 var loans = {};
 var createLoanForm = '#createLoan';
+var deleteElement = '.btn-remove-loan';
 
 /**====================================
  *      Init & others
@@ -12,25 +13,27 @@ var createLoanForm = '#createLoan';
         url: routes.loans.apiUri,
         data: null
     })
-        .done(function( response ) {
-            console.log(response);
-            loans = response.loans;
-            var html = '';
-            for(var i = 0; i < loans.length; i++){
-                html +=
-                    '<tr><td>' + loans[i].ID + '</td>' +
-                    '<td>' + moment(loans[i].createdAt).format('YYYY-MM-DD h:mm:ss a') + '</td>' +
-                    '<tr><td>' + loans[i].customer.name + '</td>' +
-                    '<td><span class="btn-icon glyphicon glyphicon-trash btn-remove-loan" data-id="' + loans[i].ID +'"></span>' +
-                    '<span class="btn-icon glyphicon glyphicon-edit btn-edit-loan" data-id="' + loans[i].ID +'" data-toggle="modal" data-target="#editLoanModal"></span></td></tr>';
-            }
-            $('#worksTable tbody').first().after(html);
-        })
-        .fail(function( error ){
-            console.log(error);
-            alert(messages.serverError);
-        })
-        .always(function() {});
+    .done(function( response ) {
+        console.log(response);
+        loans = response.loans;
+        var html = '';
+        for(var i = 0; i < loans.length; i++){
+            html +=
+                '<tr><td>' + loans[i].ID + '</td>' +
+                '<td>' + moment(loans[i].createdAt).format('YYYY-MM-DD h:mm:ss a') + '</td>' +
+                '<td>' + loans[i].customer.name + '</td>' +
+                '<td>' + loans[i].work.workType + ': ' + loans[i].work.title + '</td>' +
+                '<td>' + loans[i].copy.isbn + '</td>' +
+                '<td><span class="btn-icon glyphicon glyphicon-trash btn-remove-loan" data-id="' + loans[i].ID +'"></span>' +
+                '<span class="btn-icon glyphicon glyphicon-edit btn-edit-loan" data-id="' + loans[i].ID +'" data-toggle="modal" data-target="#editLoanModal"></span></td></tr>';
+        }
+        $('#worksTable tbody').first().after(html);
+    })
+    .fail(function( error ){
+        console.log(error);
+        alert(messages.serverError);
+    })
+    .always(function() {});
 
 }(jQuery));
 
@@ -56,10 +59,10 @@ var createLoanForm = '#createLoan';
             $.ajax({
                 type: "POST",
                 url: routes.flash.apiUri,
-                data: { type: "success", message: messages.reservationCreated }
+                data: { type: "success", message: messages.loanCreated }
             })
             .always(function() {
-                    redirect( routes.reservations.url );
+                    redirect( routes.loans.url );
             });
         })
         .fail(function( error ) {
@@ -85,7 +88,7 @@ var createLoanForm = '#createLoan';
         // Get all available resa
         $.ajax({
             type: "get",
-            url: routes.loans.apiUri,
+            url: routes.literaryWorks.apiUri,
             data: {
                 'available-for': $(el).val()
             }
@@ -109,6 +112,42 @@ var createLoanForm = '#createLoan';
                 alert(messages.serverError);
             }
         });
+    });
+
+}(jQuery));
+
+
+/**====================================
+ *       Remove
+ ======================================*/
+(function ($) {
+
+    /**
+     * Remove loan
+     */
+    $(document).on('click', deleteElement, function( event ){
+        if(confirm(messages.confirm)) {
+            $.ajax({
+                type: "delete",
+                url: routes.loans.apiUri + "/" + $(this).data("id"),
+                data: null
+            })
+            .done(function (response) {
+                console.log(response);
+                $.ajax({
+                    type: "post",
+                    url: routes.flash.apiUri,
+                    data: { type: "success", message: messages.loanDeleted }
+                })
+                .always(function () {
+                    redirect( routes.loans.url );
+                });
+            })
+            .fail(function (error) {
+                console.log(error);
+                alert(messages.serverError);
+            });
+        }
     });
 
 }(jQuery));
