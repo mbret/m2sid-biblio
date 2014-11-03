@@ -30,13 +30,10 @@ module.exports = {
         },
 
         reference: {
-            model: 'LiteraryWorkBaseModel'
+            model: 'LiteraryWork',
+            required: true
         },
 
-        work: {
-            model: 'literaryWork',
-            required: true
-        }
     }
 
 

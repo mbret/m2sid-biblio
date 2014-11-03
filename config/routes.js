@@ -84,7 +84,7 @@ module.exports.routes = {
 
     'get /api/literarycopies': 'api/ExemplaryController.findMultiple',
     'post /api/literarycopies': 'api/ExemplaryController.create',
-    //'delete /api/literarycopies/:id': 'api/ExemplaryController.delete',
+    'delete /api/literarycopies/:id': 'api/ExemplaryController.delete',
     //'put /api/literarycopies': 'api/ExemplaryController.update'
 
     'put /api/literaryworks/:id': 'api/LiteraryWorkController.update',
