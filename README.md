@@ -1,6 +1,6 @@
 # m2sid-biblio
 
-Welcome to this project, this is a simple web tool library management written with Node.js behind.
+Welcome to this project, this is a simple library web tool management written with Node.js behind.
 The framework [Sails](http://sailsjs.org) is used for the Node.js part.
 
 Here is the main three part of the application:
@@ -31,3 +31,14 @@ Web server and web service are built inside same app which is also built with sa
 - Run `npm install` inside project root
 - Launch web server with `sails lift`
 - Visit [http://localhost:1337](http://localhost:1337)
+
+## Library
+
+### Constraints
+
+#### Reservations
+- One user can make only one reservation at the same time for a book
+
+#### Loan
+- One customer can borrow a copy only if this copy is available
+- A copy is available if the number of reservation < number of copy which are not lend.

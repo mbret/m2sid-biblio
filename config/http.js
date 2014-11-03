@@ -62,7 +62,7 @@ module.exports.http = {
             // Auto log
             if( sails.config.general.autoLogon === true ){
                 req.session.authenticated = true;
-//                req.session.userID = 'librarian1';
+                req.session.userID = 1;
                 req.session.userName = 'maxime';
             }
             return next();
@@ -85,7 +85,7 @@ module.exports.http = {
 
     // bodyParser: require('skipper')
 
-  },
+  }
 
   /***************************************************************************
   *                                                                          *

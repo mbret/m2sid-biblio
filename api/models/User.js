@@ -7,9 +7,12 @@
 
 module.exports = {
 
-//    connection: 'mySQLDb',
+    autoPK: true,
+    tableName: 'user',
+    autoUpdatedAt: false,
+    autoCreatedAt: false,
 
-  attributes: {
+    attributes: {
 
       /*
        * BDD fields
@@ -19,25 +22,19 @@ module.exports = {
           autoIncrement: true,
           unique: true,
           index: true,
-          primaryKey: true,
-          columnName: 'userID'
+          primaryKey: true
       },
       login: {
           type: 'string',
           required: true,
-          unique: true,
-          columnName: "userLogin"
+          unique: true
       },
       password: {
           type: 'string',
           minLength: 1,
-          required: true,
-          columnName: "userPassword"
+          required: true
       }
 
-      /*
-       * Other fields
-       */
   }
-};
 
+};

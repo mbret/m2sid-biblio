@@ -11,15 +11,18 @@ var viewPath = 'dashboard/views';
 module.exports = {
 
     index: function (req, res) {
+
         return res.view(viewPath + '/index', {
             section: 'dashboard',
             title: 'Home'
         });
+
     },
 
     customers: function(req, res){
         return res.view(viewPath + '/customers', {
-            section: 'dashboard'
+            section: 'dashboard',
+            title: 'Customers'
         })
     },
 
@@ -28,20 +31,61 @@ module.exports = {
      */
     literaryworks: function(req, res){
         return res.view(viewPath + '/literaryworks', {
-            works: null,
+            title: 'Literary works',
             section: 'dashboard'
         })
     },
 
     literarycopies: function(req, res){
-        LiteraryWorkBaseModel.find( function callback(err, works){
+        LiteraryWork.find( function callback(err, works){
             if(err) return res.serverError(err);
             return res.view(viewPath + '/literarycopies', {
                 references: works,
-                section: 'dashboard'
+                section: 'dashboard',
+                title: 'Literary copies'
             })
         });
 
+    },
+
+    reservations: function(req, res){
+        var data = {
+            section: 'dashboard',
+            title: 'Reservations'
+        };
+
+        LiteraryWork.find().then(function( works ) {
+            data.references = works;
+            return Customer.find().then(function( customers ) {
+                data.customers = customers;
+            });
+
+        }).then(function() {
+            return res.view(viewPath + '/reservations', data );
+
+        }).catch(function(err){
+            return res.serverError(err);
+        });
+    },
+
+    loans: function(req, res){
+        var data = {
+            section: 'dashboard',
+            title: 'Loans'
+        };
+
+        Exemplary.find().populate('work').then(function( copies ) {
+            data.copies = copies;
+            return Customer.find().then(function( customers ) {
+                data.customers = customers;
+            });
+
+        }).then(function() {
+            return res.view(viewPath + '/loans', data );
+
+        }).catch(function(err){
+            return res.serverError(err);
+        });
     }
 
 };

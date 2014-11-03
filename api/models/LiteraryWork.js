@@ -7,8 +7,6 @@
 
 module.exports = {
 
-    tableName: 'literarywork',
-//    connection: 'mySQLDb',
 
     attributes: {
 

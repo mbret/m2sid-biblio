@@ -14,6 +14,7 @@ var Promise = require("bluebird");
 module.exports.bootstrap = function(cb) {
 
     Promise.all([
+<<<<<<< HEAD
         User.create({login: 'maxime', password: 'password'}),
         Customer.create({name: 'Maxime'}),
         Customer.create({name: 'Gael'}),
@@ -21,6 +22,20 @@ module.exports.bootstrap = function(cb) {
         Book.create({title:'book 1', workType:'book', volume:1, publishedDate: '2014-10-05', ID:1}),
         Book.create({title:'book 2', workType:'book', volume:1, publishedDate: '2012-10-05'}),
         Magazine.create({title:'Magazine a', workType:'magazine', number:18, publishedDate: '2010-08-05', ID:3}),
+=======
+        User.create({login: 'maxime', password: 'password', ID: 1}),
+        Customer.create({name: 'Maxime', ID: 1}),
+        Customer.create({name: 'Gael', ID: 2}),
+        Customer.create({name: 'Joris', ID: 3}),
+        LiteraryWork.create({title:'book 1', workType:'book', volume:1, publishedDate: '2014-10-05', ID: 1}),
+        LiteraryWork.create({title:'book 2', workType:'book', volume:1, publishedDate: '2012-10-05', ID: 2}),
+        LiteraryWork.create({title:'Magazine a', workType:'magazine', number:18, publishedDate: '2010-08-05', ID: 3}),
+        Reservation.create({bookedAt:'2010-08-05 22:12:00', work:1, user:1, customer:1}),
+        Reservation.create({work:1, user:1, customer:1}),
+        Reservation.create({work:3, user:1, customer:3}),
+        Reservation.create({work:2, user:1, customer:3})
+
+>>>>>>> c164e7090ab696f0dc12e4ccf3876fa1af9fe179
     ]).then(function() {
         return Exemplary.create({isbn:1234, state:'available', reference:1});
     }).then(function() {

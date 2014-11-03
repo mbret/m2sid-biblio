@@ -1,0 +1,97 @@
+
+<h1 class="page-header">Dashboard: Reservations</h1>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-8">
+
+            <h2 class="sub-header">Manage reservations</h2>
+            <table class="table table-striped" id="worksTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Booked at</th>
+                        <th>User</th>
+                        <th>Customer</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody><!-- Content are loaded dynamically --></tbody>
+            </table>
+
+        </div>
+
+        <div class="col-md-4">
+            <h2 class="sub-header">Create a reservation</h2>
+
+            <form role="form" id="createReservation">
+                <div class="form-group">
+                    <label for="">Reference</label>
+                    <select class="form-control" name="reference">
+                        <% _.each( references, function (reference) { %>
+                        <option value="<%= reference.ID %>"><%= reference.workType + ': ' + reference.title %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="">Customer</label>
+                    <select class="form-control" name="customer">
+                        <% _.each( customers, function (customer) { %>
+                        <option value="<%= customer.ID %>"><%= customer.name %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Edit customer modal -->
+<div class="modal fade" id="editResaModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <form role="form" id="editResa" data-id="">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Edit work</h4>
+                </div>
+
+                <div class="modal-body">
+                    <input type="hidden" name="id">
+                    <div class="form-group">
+                        <label for="">Reference</label>
+                        <select class="form-control" name="reference">
+                            <% _.each( references, function (reference) { %>
+                            <option value="<%= reference.ID %>"><%= reference.workType + ': ' + reference.title %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Customer</label>
+                        <select class="form-control" name="customer">
+                            <% _.each( customers, function (customer) { %>
+                            <option value="<%= customer.ID %>"><%= customer.name %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<% block('localScripts', '<script src="/js/dashboard/reservations.js"></script>') -%>

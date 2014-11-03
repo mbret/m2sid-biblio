@@ -28,9 +28,9 @@ module.exports.connections = {
   * Installed by default.                                                    *
   *                                                                          *
   ***************************************************************************/
-  localDiskDb: {
-    adapter: 'sails-disk'
-  },
+    localDiskDb: {
+        adapter: 'sails-disk'
+    },
 
     memoryDb: {
         adapter: 'sails-memory'
@@ -41,7 +41,7 @@ module.exports.connections = {
         host      : 'localhost',
         port      : 3306,
         user      : 'root',
-        password  : '',
+        password  : 'root',
         database  : 'library'
     }
 

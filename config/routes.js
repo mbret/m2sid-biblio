@@ -56,6 +56,8 @@ module.exports.routes = {
     'get /customers': 'DashboardController.customers',
     'get /literaryworks': 'DashboardController.literaryworks',
     'get /literarycopies': 'DashboardController.literarycopies',
+    'get /reservations': 'DashboardController.reservations',
+    'get /loans': 'DashboardController.loans',
 
     /*
      * HELPER API
@@ -66,16 +68,17 @@ module.exports.routes = {
 
     /*
      * REST API
-     * - used by application as RESTFUL service (no persistence)
+     * - used by application as REST service
      */
     'get /api/customers': 'api/CustomerController.findMultiple',
     'post /api/customers': 'api/CustomerController.create',
     'delete /api/customers/:id': 'api/CustomerController.delete',
-    'put /api/customers': 'api/CustomerController.update',
+    'put /api/customers/:id': 'api/CustomerController.update',
 
     'get /api/literaryworks': 'api/LiteraryWorkController.findMultiple',
     'post /api/literaryworks': 'api/LiteraryWorkController.create',
     'delete /api/literaryworks/:id': 'api/LiteraryWorkController.delete',
+<<<<<<< HEAD
     'put /api/literaryworks': 'api/LiteraryWorkController.update',
 
 
@@ -83,4 +86,15 @@ module.exports.routes = {
     'post /api/literarycopies': 'api/ExemplaryController.create',
     //'delete /api/literarycopies/:id': 'api/ExemplaryController.delete',
     //'put /api/literarycopies': 'api/ExemplaryController.update'
+=======
+    'put /api/literaryworks/:id': 'api/LiteraryWorkController.update',
+
+    'post /api/reservations': 'api/ReservationController.create',
+    'get /api/reservations': 'api/ReservationController.findMultiple',
+    'delete /api/reservations/:id': 'api/ReservationController.destroy',
+    'put /api/reservations/:id': 'api/ReservationController.update',
+
+    'get /api/loans': 'api/LoanController.findMultiple',
+
+>>>>>>> c164e7090ab696f0dc12e4ccf3876fa1af9fe179
 };

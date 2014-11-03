@@ -2,7 +2,36 @@ var messages = {
     serverError: "Something went wrong, please try later!",
     badCredential: "Wrong credential!",
     badRequest: "Please verify your form, some information are not valid!",
-    confirm: "Are you sure?"
+    confirm: "Are you sure?",
+
+    reservationCreated: "Reservation created!",
+    reservationDeleted: "Reservation deleted!",
+    reservationUpdated: "Reservation updated!"
+}
+
+var routes = {
+    literaryWorks: {
+        url: 'literaryworks',
+        apiUri: '/api/literaryworks'
+    },
+    customers: {
+        url: 'customers',
+        apiUri: '/api/reservations'
+    },
+    reservations: {
+        url: 'reservations',
+        apiUri: '/api/reservations'
+    },
+    loans: {
+        url: 'loans',
+        apiUri: '/api/loans'
+    },
+    flash: {
+        apiUri: '/api/flash'
+    },
+    login: {
+        apiUri: '/api/login'
+    }
 }
 
 //var routes = {
@@ -33,7 +62,6 @@ function getObjectByID( id, arrayOfObjects ){
 
         var obj = flashMessages[key];
         if(obj.message){
-            console.log('haha');
             new PNotify({
                 title: obj.title,
                 text: obj.message,
@@ -61,7 +89,7 @@ function getObjectByID( id, arrayOfObjects ){
         button.button('loading');
         $.ajax({
             type: "POST",
-            url: "/api/login",
+            url: routes.login.apiUri,
             data: $(this).serialize()
         })
         .done(function( response ) {

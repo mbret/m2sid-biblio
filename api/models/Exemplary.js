@@ -31,6 +31,11 @@ module.exports = {
 
         reference: {
             model: 'LiteraryWorkBaseModel'
+        },
+
+        work: {
+            model: 'literaryWork',
+            required: true
         }
     }
 
