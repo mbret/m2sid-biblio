@@ -37,7 +37,6 @@ module.exports = {
     },
 
     delete: function (req, res) {
-        console.log('sdf');
         Reservation.findOne({'ID':req.param('id')}).then(function(reservation){
             if(!reservation) return res.notFound();
 
