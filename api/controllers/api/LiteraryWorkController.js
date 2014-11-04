@@ -9,13 +9,43 @@ module.exports = {
 
     findMultiple: function (req, res) {
 
-        // get book and magazines
-        LiteraryWork.find( function callback(err, works){
-            if(err) return res.serverError(err);
-            return res.ok({
-                works: works
+        // Search condition for available copy for rent
+        if( req.param('available-for') ){
+            var customerID = req.param('available-for');
+
+            // Retrieve all works with their copies and their reservations
+            LiteraryWork.find().populate('copies', {state: 'available'}).populate('reservations').exec(function callback(err, works){
+
+                if(err) return res.serverError(err);
+
+                availableWorks = [];
+                _.forEach( works, function( work ) {
+                    // Check resa for this cutomer
+                    var hasResa = false; // if the customer has one resa for this work
+                    _.forEach( work.reservations, function( reservation ) {
+                        if(reservation.customer == customerID ) hasResa = true;
+                    });
+                    if( work.copies.length > 0 && (work.copies.length > work.reservations.length || hasResa) ){
+                        availableWorks.push( work );
+                    }
+                });
+
+                return res.ok({
+                    works: availableWorks
+                });
+
             });
-        });
+        }
+        else{
+            // get book and magazines
+            LiteraryWork.find( function callback(err, works){
+                if(err) return res.serverError(err);
+                return res.ok({
+                    works: works
+                });
+            });
+        }
+
     },
 
 

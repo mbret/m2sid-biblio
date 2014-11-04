@@ -6,7 +6,10 @@ var messages = {
 
     reservationCreated: "Reservation created!",
     reservationDeleted: "Reservation deleted!",
-    reservationUpdated: "Reservation updated!"
+    reservationUpdated: "Reservation updated!",
+    loanCreated: "Loan created!",
+    loanDeleted: "Loan ended!",
+    loanUpdated: "Loan updated!"
 }
 
 var routes = {

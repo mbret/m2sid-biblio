@@ -68,23 +68,15 @@ module.exports = {
         });
     },
 
+
     loans: function(req, res){
-        var data = {
-            section: 'dashboard',
-            title: 'Loans'
-        };
-
-        Exemplary.find().populate('reference').then(function( copies ) {
-            data.copies = copies;
-            return Customer.find().then(function( customers ) {
-                data.customers = customers;
-            });
-
-        }).then(function() {
-            return res.view(viewPath + '/loans', data );
-
-        }).catch(function(err){
-            return res.serverError(err);
+        Customer.find().exec(function( err, customers ) {
+            if(err) return res.serverError(err);
+            return res.view(viewPath + '/loans', {
+                section: 'dashboard',
+                title: 'Loans',
+                customers: customers
+            })
         });
     }
 

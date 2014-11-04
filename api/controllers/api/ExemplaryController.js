@@ -50,20 +50,17 @@ module.exports = {
         }).catch(function(err){
             return res.serverError(err);
         });
-    }
+    },
 
     update: function (req, res) {
 
         // Check required params
         if( !req.param('id') ) return res.badRequest();
 
-        // user data
+        // copy data
         var data = {};
-        if( req.param('title') ) data.title = req.param('title');
-        if( req.param('publishedDate') ) data.publishedDate = req.param('publishedDate');
-        if( req.param('type') ) data.workType = req.param('type');
-        if( req.param('volume') ) data.volume = req.param('volume');
-        if( req.param('number') ) data.number = req.param('number');
+        if( req.param('isbn') ) data.isbn = req.param('isbn');
+        if( req.param('reference') ) data.reference = req.param('reference');
 
         // Query to update
         var query = {
@@ -71,18 +68,19 @@ module.exports = {
         }
 
         // Update process
-        LiteraryWork.update(query, data, function(err, works) {
-            console.log(works);
+        Exemplary.update(query, data, function(err, exemplaries) {
+            console.log(exemplaries);
             if (err) {
                 if(err.ValidationError) return res.badRequest( err );
                 else return res.serverError(err);
             }
-            if(!works || works.length < 1) return res.notFound();
+            if(!exemplaries || exemplaries.length < 1) return res.notFound();
 
             return res.ok({
-                work: works[0]
+                exemplary: exemplaries[0]
             });
-        });
+        })
     
+    }
 };
 

@@ -95,7 +95,7 @@ module.exports.routes = {
 
     'get /api/loans': 'api/LoanController.findMultiple',
     'post /api/loans': 'api/LoanController.create',
-    'put /api/loans': 'api/LoanController.update',
-    'delete /api/loans': 'api/LoanController.delete'
+    'put /api/loans/:id': 'api/LoanController.update',
+    'delete /api/loans/:id': 'api/LoanController.delete'
 
 };

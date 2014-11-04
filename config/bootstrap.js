@@ -29,15 +29,16 @@ module.exports.bootstrap = function(cb) {
 
     ]).then(function() {
         return Promise.all([
-            Exemplary.create({isbn:1234, state:'available', reference:1, state:'rented'}),
+            Exemplary.create({isbn:1234, state:'available', reference:1, state:'rented', ID:1}),
             Exemplary.create({isbn:1244, state:'available', reference:1}),
             Exemplary.create({isbn:1534, state:'available', reference:1}),
             Exemplary.create({isbn:9876, state:'available', reference:3})
         ]);
-//    }).then(function() {
-//        return LiteraryWork.find().populate('copies', { state: 'available' }).exec(function(err, works){
-//            console.log(works);
-//        });
+    }).then(function() {
+        return Promise.all([
+            Loan.create({work:1, customer:3 , copy:1, user:1})
+
+        ]);
     }).then(function() {
         sails.log.info('All data loaded inside database');
         return cb();
