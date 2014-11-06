@@ -124,7 +124,7 @@ $(function() {
         button.button('loading');
         $.ajax({
             type: "put",
-            url: "/api/customers",
+            url: "/api/literarycopies",
             data: dataToSend
         })
         .done(function( response ) {
