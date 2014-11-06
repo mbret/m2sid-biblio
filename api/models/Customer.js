@@ -17,14 +17,12 @@ module.exports = {
           autoIncrement: true,
           unique: true,
           index: true,
-          primaryKey: true,
-          columnName: 'customerID'
+          primaryKey: true
       },
       name: {
           type: 'string',
           required: true,
-          unique: true,
-          columnName: "customerName"
+          unique: true
       }
 
       /*

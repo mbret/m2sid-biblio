@@ -26,7 +26,7 @@ $(function() {
                     '</td[><td>' + copies[i].reference.title + '</td>' +
                     '</td[><td>' + copies[i].state + '</td>' +
                     '<td><span class="btn-icon glyphicon glyphicon-trash btn-remove-copy" data-id="' + copies[i].ID +'"></span>' +
-                    '<span class="btn-icon glyphicon glyphicon-edit btn-edit-copy" data-id="' + copies[i].ID +'" data-toggle="modal" data-target="#editCustomerModal"></span></td></tr>';
+                    '<span class="btn-icon glyphicon glyphicon-edit btn-edit-copy" data-id="' + copies[i].ID +'" data-toggle="modal" data-target="#editCopyModal"></span></td></tr>';
             }
             $('#copiesTable tbody').first().after(html);
         })
@@ -110,31 +110,31 @@ $(function() {
 
 
     /**
-     * Edit a customer
+     * Edit a copy
      *
      */
-    $("#editCustomer").on('submit', function( event ){
+    $("#editCopy").on('submit', function( event ){
         event.preventDefault();
         var button = $(this).find("button[type='submit']");
 
         // Remove data vefore sending if user didn't changed them
         var dataToSend = $(this).serializeObject();
-        if( dataToSend.name == $(this).find('input[name="name"]').data('oldValue')) delete dataToSend.name;
+        if( dataToSend.state == $(this).find('input[name="state"]').data('oldValue')) delete dataToSend.state;
 
         button.button('loading');
         $.ajax({
             type: "put",
-            url: "/api/literarycopies",
+            url: "/api/literarycopies" + '/' + dataToSend.id,
             data: dataToSend
         })
         .done(function( response ) {
             $.ajax({
                 type: "POST",
                 url: "/api/flash",
-                data: { type: "success", message: "Customer updated" }
+                data: { type: "success", message: "Copye updated" }
             })
             .always(function() {
-                redirect( 'customers' );
+                redirect( 'literarycopies' );
             });
         })
         .fail(function( error ) {
@@ -155,13 +155,12 @@ $(function() {
      * On edit modal showing
      * - populate form
      */
-    $('#editCustomerModal').on('show.bs.modal', function ( event ) {
+    $('#editCopyModal').on('show.bs.modal', function ( event ) {
         var id = $(event.relatedTarget).data('id');
-        var customer = getObjectByID( id, customers );
-        console.log(customer);
-        $(this).find('input[name="name"]').val( customer.name );
-        $(this).find('input[name="name"]').data( 'oldValue', customer.name );
-        $(this).find('input[name="id"]').val( customer.ID );
+        var copy = getObjectByID( id, copies );
+        console.log(copy);
+        $(this).find('input[name="state"]').val( copy.state );
+        $(this).find('input[name="id"]').val( copy.ID );
     })
 });
 

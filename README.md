@@ -49,6 +49,7 @@ I know this app looks a bit like "unfinished" and a lot of comments are missing 
 ## Troubleshooting
 - Be sure that no other app run on same port.
 - Be sure that node process has rights to write in .tmp.
+- If you have any integrity problem when starting app, try to delete .tmp/localDiskDb.db
 
 ## How to make this app better (Not relative to library management)?
 - Protect params against hack in a better way.

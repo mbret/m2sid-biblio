@@ -53,7 +53,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
 
-            <form role="form" id="editWork" data-id="">
+            <form role="form" id="editCopy" data-id="">
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -63,8 +63,11 @@
                 <div class="modal-body">
                     <input type="hidden" name="id">
                     <div class="form-group">
-                        <label for="">ISBN</label>
-                        <input type="text" class="form-control" required="true" name="isbn" placeholder="Enter ISBN">
+                        <label for="">State</label>
+                        <select class="form-control" name="state">
+                            <option value="available">Available</option>
+                            <option value="rented">Rented</option>
+                        </select>
                     </div>
                 </div>
 

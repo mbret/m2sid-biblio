@@ -32,7 +32,7 @@ module.exports = {
         reference: {
             model: 'LiteraryWork',
             required: true
-        },
+        }
 
 
     }

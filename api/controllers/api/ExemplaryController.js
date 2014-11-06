@@ -30,7 +30,6 @@ module.exports = {
 
         Exemplary.find({}).populate('reference').exec(function(err, results){
             if (err) { return res.serverError(err)};
-            console.log(results)
             return res.ok({
                 copies: results
             });
@@ -59,8 +58,7 @@ module.exports = {
 
         // copy data
         var data = {};
-        if( req.param('isbn') ) data.isbn = req.param('isbn');
-        if( req.param('reference') ) data.reference = req.param('reference');
+        if( req.param('state') ) data.state = req.param('state');
 
         // Query to update
         var query = {
@@ -69,7 +67,6 @@ module.exports = {
 
         // Update process
         Exemplary.update(query, data, function(err, exemplaries) {
-            console.log(exemplaries);
             if (err) {
                 if(err.ValidationError) return res.badRequest( err );
                 else return res.serverError(err);
